@@ -54,11 +54,11 @@ function SignupPage() {
 
         <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full sm:w-96">
           <img
-            src="https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg"
-            alt="libros"
-            className="w-32 h-auto mb-4 mx-auto"
+            src="/logoSGA.png" 
+            alt="logo SGA"
+            className="w-48 h-auto mb-4 mx-auto"
           />
-          <h1 className="text-2xl font-bold text-center mb-6">SGA Sign Up</h1>
+          {/* <h1 className="text-2xl font-bold text-center mb-6">SGA Sign Up</h1> */}
           <form onSubmit={handleSignupSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium">Email:</label>
