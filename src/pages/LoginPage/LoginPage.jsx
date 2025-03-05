@@ -45,27 +45,36 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div className="SignupPage h-screen bg-cover bg-center relative" style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
+      <div className="flex justify-center items-center h-full">
+        <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full sm:w-96">
+          <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+          <form onSubmit={handleLoginSubmit} className="space-y-4">
+            <label className="block text-sm font-medium">Email:</label>
+            <input type="email" name="email" value={email} onChange={handleEmail} className="w-full p-2 border border-gray-300 rounded-md" required/>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+            <label className="block text-sm font-medium">Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+              className="w-full p-2 border border-gray-300 rounded-md" required
+            />
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Login</button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+          <p className="text-center mt-4">Don't have an account yet?</p>
+          <Link to={"/signup"} className="block text-center text-blue-500 hover:underline"> Sign Up</Link>
+        </div>
+
+
+
+      </div>
+
     </div>
   );
 }
