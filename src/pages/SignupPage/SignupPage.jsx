@@ -7,7 +7,7 @@ function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -15,12 +15,12 @@ function SignupPage() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
-  const handleRole = e => setRole(e.target.value);
+  const handleRole = (e) => setRole(e.target.value);
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name };
+    const requestBody = { email, password, name, role };
 
     // Send a request to the server using axios
     /* 
@@ -48,54 +48,55 @@ function SignupPage() {
   };
 
   return (
-    <div className="SignupPage h-screen bg-cover bg-center relative " style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
+    <div className="hero bg-base-200 min-h-screen" style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <form onSubmit={handleSignupSubmit} className="card-body w-96">
+            <img src="/logoSGA.png" alt="logo SGA" className="w-48 h-auto mb-4 mx-auto" />
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
 
-      <div className="flex justify-center items-center h-full">
-
-        <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full sm:w-96">
-          <img
-            src="/logoSGA.png" 
-            alt="logo SGA"
-            className="w-48 h-auto mb-4 mx-auto"
-          />
-          {/* <h1 className="text-2xl font-bold text-center mb-6">SGA Sign Up</h1> */}
-          <form onSubmit={handleSignupSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Email:</label>
-              <input type="email" name="email" value={email} onChange={handleEmail} className="w-full p-2 border border-gray-300 rounded-md" required />
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input type="email" name="email" value={email} onChange={handleEmail} className="input input-bordered" required />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input type="password" name="password" value={password} onChange={handlePassword} className="input input-bordered" required />
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium">Password:</label>
-              <input type="password" name="password" value={password} onChange={handlePassword} className="w-full p-2 border border-gray-300 rounded-md" required />
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input type="text" name="name" value={name} onChange={handleName} className="input input-bordered" required />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Role</span>
+                </label>
+                <select name="role" value={role} onChange={handleRole} className="select select-bordered w-full max-w-xs" required >
+                  <option value="" disabled>Role</option>
+                  <option value="profesor">Profesor</option>
+                  <option value="estudiante">Estudiante</option>
+                </select>
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium">Name:</label>
-              <input type="text" name="name" value={name} onChange={handleName} className="w-full p-2 border border-gray-300 rounded-md" required />
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Sing up</button>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium">Role:</label>
-              <select name="role" value={role} onChange={handleRole} className="w-full p-2 border border-gray-300 rounded-md" required >
-                <option value="" disabled>Role</option>
-                <option value="Profesor">Profesor</option>
-                <option value="Estudiante">Estudiante</option>
-              </select>
-            </div>
-
-            <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Sign Up</button>
           </form>
-
-          {errorMessage && <p className="mt-4 text-center text-red-500">{errorMessage}</p>}
-
-          <p className="text-center mt-4">Already have an account?</p>
-          <Link to="/login" className="block text-center text-blue-500 hover:underline">Login</Link>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <p className="text-center mb-5">Don't have an account yet? <Link to={"/login"} className="link link-primary">Login</Link></p>
         </div>
       </div>
     </div>
-
-
   );
 }
 
