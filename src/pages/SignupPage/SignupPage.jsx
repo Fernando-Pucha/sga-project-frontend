@@ -50,8 +50,8 @@ function SignupPage() {
   return (
     <div className="hero bg-base-200 min-h-screen" style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleSignupSubmit} className="card-body w-96">
+        <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
+          <form onSubmit={handleSignupSubmit} className="card-body">
             <img src="/logoSGA.png" alt="logo SGA" className="w-48 h-auto mb-4 mx-auto" />
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="form-control">
