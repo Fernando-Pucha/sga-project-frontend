@@ -12,6 +12,9 @@ export default function CoursePage() {
                     <div className="card-body">
                         <h2 className="card-title">Microsoft Word</h2>
                         <p>Enrolled students:</p>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">+ Details</button>
+                        </div>
                     </div>
                 </div>
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
@@ -23,6 +26,9 @@ export default function CoursePage() {
                     <div className="card-body">
                         <h2 className="card-title">Microsoft Excel</h2>
                         <p>Enrolled students:</p>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">+ Details</button>
+                        </div>
                     </div>
                 </div>
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
@@ -34,6 +40,9 @@ export default function CoursePage() {
                     <div className="card-body">
                         <h2 className="card-title">Microsoft PowerPoint</h2>
                         <p>Enrolled students:</p>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">+ Details</button>
+                        </div>
                     </div>
                 </div>
             </div>

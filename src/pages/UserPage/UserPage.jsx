@@ -1,22 +1,43 @@
+import { useEffect, useState } from "react";
 import AddUser from "../../components/AddUser/AddUser";
+import authService from "../../services/auth.service";
+import UsersList from "../../components/UserList/UserList";
 
 export default function UserPage() {
+  const [user, setUser] = useState([]);
+  const [userLogin, setUserLogin] = useState([]);
+
+  useEffect(() => {
+    authService
+      .users()
+      .then(res => setUser(res.data))
+      .catch(err => console.log(err))
+
+    authService
+      .profile()
+      .then(res => setUserLogin(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
   const closeModal = () => {
     document.getElementById('my_modal_4').close();
   };
-  
+
   return (
     <>
-      <div className="flex">
-        <button className="btn btn-outline btn-primary mt-2 ml-auto mr-4" onClick={() => document.getElementById('my_modal_4').showModal()}>+ User</button>
-        <dialog id="my_modal_4" className="modal">
-          <div className="modal-box w-11/12 max-w-5xl">
-            <h3 className="font-bold text-lg">Add new user</h3>
-            {AddUser()}
-            <button className="btn mt-4" onClick={closeModal}>Close</button>
-          </div>
-        </dialog>
-      </div>
+      {userLogin?.role === "admin" ? (
+        <div className="flex">
+          <button className="btn btn-outline btn-primary mt-2 ml-auto mr-4" onClick={() => document.getElementById('my_modal_4').showModal()}>+ User</button>
+          <dialog id="my_modal_4" className="modal">
+            <div className="modal-box w-11/12 max-w-5xl">
+              <h3 className="font-bold text-lg">Add new user</h3>
+              <AddUser /> 
+              <button className="btn mt-4" onClick={closeModal}>Close</button>
+            </div>
+          </dialog>
+        </div>
+
+      ) : null}
 
       <div className="overflow-x-auto mt-2">
         <table className="table">
@@ -164,9 +185,23 @@ export default function UserPage() {
               </th>
             </tr>
           </tbody>
+          <tbody>
+            {user.length > 0 ? (
+              user.map((usuario) => (
+                <UsersList key={usuario._id} usuario={usuario} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">
+                  No users to show
+                </td>
+              </tr>
+            )}
+          </tbody>
 
         </table>
       </div>
+
     </>
   );
 }

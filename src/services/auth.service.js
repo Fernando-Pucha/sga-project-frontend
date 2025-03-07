@@ -40,6 +40,11 @@ class AuthService {
   profile = () =>{
     return this.api.get("/user/profile");
   }
+
+  users = () =>{
+    return this.api.get("/user/users");
+  }
+
 }
 
 // Create one instance (object) of the service
