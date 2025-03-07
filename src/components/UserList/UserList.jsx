@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+const FrontApiURL = `${process.env.REACT_APP_FRONT_URL}`;
+
 export default function UsersList({ usuario }) {
 
     return (
@@ -29,7 +32,9 @@ export default function UsersList({ usuario }) {
             </td>
             <td>{usuario.role}</td>
             <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+                <Link to={`${FrontApiURL}/userdetail/${usuario._id}`} style={{ textDecoration: 'none' }}>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                </Link>
             </th>
         </tr>
     )

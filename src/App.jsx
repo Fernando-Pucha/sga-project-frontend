@@ -12,6 +12,8 @@ import IsAnon from "./components/IsAnon/IsAnon";
 import EditProfilePage from "./pages/ProfilePage/EditProfilePage";
 import CoursePage from "./pages/CoursePage/CoursePage";
 import UserPage from "./pages/UserPage/UserPage";
+import UserDetails from "./components/UserDetails/UserDetails";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -20,12 +22,13 @@ function App() {
       <Routes>
         <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
         <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<IsPrivate><HomePage /> </IsPrivate>} />
         <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
         <Route path="/profile/edit" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
         <Route path="/users" element={<IsPrivate><UserPage /></IsPrivate>} />
+        <Route path="/userdetail/:userId" element={<IsPrivate><UserDetails/></IsPrivate>} />
+        <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </div>
   );

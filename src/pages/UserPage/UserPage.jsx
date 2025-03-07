@@ -7,11 +7,15 @@ export default function UserPage() {
   const [user, setUser] = useState([]);
   const [userLogin, setUserLogin] = useState([]);
 
-  useEffect(() => {
+  const getInitialUsers = () => {
     authService
       .users()
       .then(res => setUser(res.data))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    getInitialUsers();
 
     authService
       .profile()
@@ -20,6 +24,7 @@ export default function UserPage() {
   }, []);
 
   const closeModal = () => {
+    getInitialUsers();
     document.getElementById('my_modal_4').close();
   };
 

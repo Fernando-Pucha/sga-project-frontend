@@ -45,6 +45,14 @@ class AuthService {
     return this.api.get("/user/users");
   }
 
+  userDetails = (id) =>{
+    return this.api.get(`/user/userdetail/${id}`);
+  }
+
+  userDelete = (id) =>{
+    return this.api.get(`/user/userdelete/${id}`);
+  }
+
 }
 
 // Create one instance (object) of the service
