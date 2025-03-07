@@ -15,6 +15,7 @@ import UserPage from "./pages/UserPage/UserPage";
 import UserDetails from "./components/UserDetails/UserDetails";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import EditProfile from "./components/EditProfile/EditProfile";
+import UserUpdate from "./components/UserUpdate/UserUpdate.jsx";
 
 function App() {
   return (
@@ -26,9 +27,14 @@ function App() {
         <Route path="/" element={<IsPrivate><HomePage /> </IsPrivate>} />
         <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
         <Route path="/profile/edit" element={<IsPrivate><EditProfile /></IsPrivate>} />
-        <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
+        
         <Route path="/users" element={<IsPrivate><UserPage /></IsPrivate>} />
-        <Route path="/userdetail/:userId" element={<IsPrivate><UserDetails/></IsPrivate>} />
+        <Route path="/users/userdetail/:userId" element={<IsPrivate><UserDetails/></IsPrivate>} />
+        <Route path="/users/userupdate/:userId" element={<IsPrivate><UserUpdate/></IsPrivate>} />
+
+        <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
+        <Route path="/coursesenrolled" element={<IsPrivate><CoursePage /></IsPrivate>} />
+
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </div>

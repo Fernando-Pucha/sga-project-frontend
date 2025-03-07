@@ -57,8 +57,8 @@ class AuthService {
     return this.api.delete(`/user/userdelete/${id}`);
   }
 
-  userUpdate = (id) =>{
-    return this.api.put(`/user/userupdate/${id}`);
+  userUpdate = (id, requestBody) =>{
+    return this.api.put(`/user/userupdate/${id}`, requestBody);
   }
 
 }

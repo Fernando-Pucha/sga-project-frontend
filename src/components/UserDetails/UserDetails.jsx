@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import authService from "../../services/auth.service";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
+import { Link} from "react-router-dom";
+
+const FrontApiURL = `${process.env.REACT_APP_FRONT_URL}`;
 
 export default function UserDetails() {
     const { userId } = useParams();
@@ -50,10 +53,12 @@ export default function UserDetails() {
                     <p className="mb-6">{user.role}</p>
 
                     {/*  <button className="btn btn-primary w-32">Edit</button> */}
-                    <div className="flex">
-                        <button className="btn btn-primary">Update</button>
-                        {/* <button className="btn btn-secondary">Secondary</button> */}
+                    <div className="flex gap-5">
+                        <button className="btn btn-primary"><Link to={`${FrontApiURL}/users/userupdate/${user._id}`}>Update</Link></button>
+                        
                         <button className="btn btn-accent" onClick={() => deleteUser(user._id)}>Delete</button>
+
+                        <button className="btn btn-secondary" onClick={()=>navigate("/users")} >Back</button>
                     </div>
 
                 </div>

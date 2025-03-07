@@ -1,8 +1,8 @@
 export default function CoursePage() {
     return (
         <>
-            <h1 className="text-4xl mb-4 text-center">Courses enrolled</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto">
+            {/* <h1 className="text-4xl mb-4 text-center">Courses enrolled</h1> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img

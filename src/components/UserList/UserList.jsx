@@ -32,7 +32,7 @@ export default function UsersList({ usuario }) {
             </td>
             <td>{usuario.role}</td>
             <th>
-                <Link to={`${FrontApiURL}/userdetail/${usuario._id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`${FrontApiURL}/users/userdetail/${usuario._id}`} style={{ textDecoration: 'none' }}>
                     <button className="btn btn-ghost btn-xs">details</button>
                 </Link>
             </th>

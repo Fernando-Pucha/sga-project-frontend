@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router";
+import { useParams } from 'react-router-dom';
 
-export default function EditProfile() {
+export default function UserUpdate() {
+
+  const { userId } = useParams();
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
- /*  const [password, setPassword] = useState(""); */
+  /* const [password, setPassword] = useState(""); */
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleEmail = (e) => setEmail(e.target.value);
-  /* const handlePassword = (e) => setPassword(e.target.value); */
+ /*  const handlePassword = (e) => setPassword(e.target.value); */
   const handleName = (e) => setName(e.target.value);
   const handleRole = (e) => setRole(e.target.value);
 
   useEffect(() => {
     authService
-      .profile()
+      .userDetails(userId)
       .then((response) => {
         const oneUser = response.data;
         setEmail(oneUser.email);
@@ -28,14 +31,14 @@ export default function EditProfile() {
         setRole(oneUser.role);
       })
       .catch(err => console.log(err.message));
-  }, []);
+  }, [userId]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, name, role };
     authService
-      .profileUpdate(requestBody)
-      .then(() => { navigate(`/profile`) })
+      .userUpdate(userId, requestBody)
+      .then(() => { navigate(-1) })
       .catch((error) => {
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
