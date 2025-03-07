@@ -1,6 +1,7 @@
 import "./HomePage.css";
 
 function HomePage() {
+  
   return (
     <>
       <div className="stats shadow mt-8">
@@ -61,7 +62,7 @@ function HomePage() {
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
-
+      
       <div className="overflow-x-auto mt-8">
         <table className="table">
           {/* head */}
@@ -208,7 +209,7 @@ function HomePage() {
               </th>
             </tr>
           </tbody>
-          
+
         </table>
       </div>
     </>

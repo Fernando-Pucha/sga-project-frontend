@@ -9,11 +9,12 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-import EditProfilePage from "./pages/ProfilePage/EditProfilePage";
+
 import CoursePage from "./pages/CoursePage/CoursePage";
 import UserPage from "./pages/UserPage/UserPage";
 import UserDetails from "./components/UserDetails/UserDetails";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
         <Route path="/" element={<IsPrivate><HomePage /> </IsPrivate>} />
         <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
-        <Route path="/profile/edit" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
+        <Route path="/profile/edit" element={<IsPrivate><EditProfile /></IsPrivate>} />
         <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
         <Route path="/users" element={<IsPrivate><UserPage /></IsPrivate>} />
         <Route path="/userdetail/:userId" element={<IsPrivate><UserDetails/></IsPrivate>} />

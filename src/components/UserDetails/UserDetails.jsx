@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import authService from "../../services/auth.service";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router";
 
 export default function UserDetails() {
     const { userId } = useParams();
     const [user, setUser] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         authService
@@ -12,6 +15,19 @@ export default function UserDetails() {
             .then(res => setUser(res.data))
             .catch(err => console.log(err));
     }, [userId]);
+
+    const deleteUser = (userId) => {
+        const isConfirmed = window.confirm("Are you sure you want to delete the user?")
+
+        if (isConfirmed) {
+            authService
+                .userDelete(userId)
+                .then(() => {
+                    navigate("/users");
+                })
+                .catch((err) => console.log(err));
+        }
+    };
 
     return (
         <div className="hero bg-base-200 min-h-[91vh]">
@@ -37,7 +53,7 @@ export default function UserDetails() {
                     <div className="flex">
                         <button className="btn btn-primary">Update</button>
                         {/* <button className="btn btn-secondary">Secondary</button> */}
-                        <button className="btn btn-accent">Delete</button>
+                        <button className="btn btn-accent" onClick={() => deleteUser(user._id)}>Delete</button>
                     </div>
 
                 </div>

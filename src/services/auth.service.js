@@ -41,6 +41,10 @@ class AuthService {
     return this.api.get("/user/profile");
   }
 
+  profileUpdate = (requestBody) =>{
+    return this.api.put("/user/profile",requestBody);
+  }
+
   users = () =>{
     return this.api.get("/user/users");
   }
@@ -50,7 +54,11 @@ class AuthService {
   }
 
   userDelete = (id) =>{
-    return this.api.get(`/user/userdelete/${id}`);
+    return this.api.delete(`/user/userdelete/${id}`);
+  }
+
+  userUpdate = (id) =>{
+    return this.api.put(`/user/userupdate/${id}`);
   }
 
 }
