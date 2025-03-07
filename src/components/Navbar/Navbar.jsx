@@ -24,7 +24,7 @@ function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50 absolute">
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/courses">Courses</Link></li>
-              <li><Link to="/students">Students</Link></li>
+              <li><Link to="/users">Users</Link></li>
             </ul>
           </div>
         </div>
