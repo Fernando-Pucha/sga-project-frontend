@@ -3,7 +3,9 @@ import authService from "../../services/auth.service";
 import "./ProfilePage.css";
 
 
-function ProfilePage() {
+function EditProfilePage() {
+  
+
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ function ProfilePage() {
           <h2 className="text-2xl font-bold mb-2">Role</h2>
           <p className="mb-6">{user.role}</p>
 
-          {/* <button className="btn btn-primary w-32">Edit</button> */}
+          <button className="btn btn-primary w-32">Edit</button>
         </div>
       </div>
     </div>
@@ -41,4 +43,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default EditProfilePage;
