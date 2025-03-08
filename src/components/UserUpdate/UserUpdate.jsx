@@ -10,13 +10,11 @@ export default function UserUpdate() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
-  /* const [password, setPassword] = useState(""); */
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleEmail = (e) => setEmail(e.target.value);
- /*  const handlePassword = (e) => setPassword(e.target.value); */
   const handleName = (e) => setName(e.target.value);
   const handleRole = (e) => setRole(e.target.value);
 
@@ -26,7 +24,6 @@ export default function UserUpdate() {
       .then((response) => {
         const oneUser = response.data;
         setEmail(oneUser.email);
-       /*  setPassword(oneUser.password); */
         setName(oneUser.name);
         setRole(oneUser.role);
       })
@@ -64,13 +61,9 @@ export default function UserUpdate() {
               <h2 className="text-2xl font-bold mb-2">Email</h2>
               <input type="email" name="email" value={email} onChange={handleEmail} className="input input-bordered" required />
 
-              {/* <h2 className="text-2xl font-bold mb-2">Password</h2>
-              <input type="password" name="password" value={password} onChange={handlePassword} className="input input-bordered" required /> */}
-
               <h2 className="text-2xl font-bold mb-2">Role</h2>
               <select name="role" value={role} onChange={handleRole} className="select select-bordered w-full max-w-xs" required >
                 <option value="" disabled>Role</option>
-                {/* <option value="admin">Administrator</option> */}
                 <option value="profesor">Teacher</option>
                 <option value="estudiante">Student</option>
               </select>
