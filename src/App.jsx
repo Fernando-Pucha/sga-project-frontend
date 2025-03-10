@@ -16,6 +16,8 @@ import UserDetails from "./components/UserDetails/UserDetails";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import EditProfile from "./components/EditProfile/EditProfile";
 import UserUpdate from "./components/UserUpdate/UserUpdate.jsx";
+import CourseEnrollPage from "./pages/CourseEnrollPage/CourseEnrollPage.jsx";
+import CourseDetailsPage from "./pages/CourseDetails/CourseDetailsPage.jsx";
 
 function App() {
   return (
@@ -33,7 +35,8 @@ function App() {
         <Route path="/users/userupdate/:userId" element={<IsPrivate><UserUpdate/></IsPrivate>} />
 
         <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
-        <Route path="/coursesenrolled" element={<IsPrivate><CoursePage /></IsPrivate>} />
+        <Route path="/coursesenrolled" element={<IsPrivate><CourseEnrollPage /></IsPrivate>} />
+        <Route path="/courses/details" element={<IsPrivate><CourseDetailsPage /></IsPrivate>} />
 
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>

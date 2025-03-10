@@ -17,7 +17,7 @@ export default function EditProfile() {
 
   useEffect(() => {
     authService
-      .profile()
+      .userProfile()
       .then((response) => {
         const oneUser = response.data;
         setEmail(oneUser.email);

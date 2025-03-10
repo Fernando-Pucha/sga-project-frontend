@@ -8,7 +8,7 @@ function ProfilePage() {
 
   useEffect(() => {
     authService
-      .profile()
+      .userProfile()
       .then(res => setUser(res.data))
       .catch(err => console.log(err));
   }, []);

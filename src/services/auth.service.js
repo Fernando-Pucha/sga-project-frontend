@@ -20,47 +20,50 @@ class AuthService {
   }
 
   login = (requestBody) => {
-    return this.api.post("/user/login", requestBody);
+    return this.api.post("/api/user/login", requestBody);
     // same as
     // return axios.post("http://localhost:5005/auth/login");
   };
 
   signup = (requestBody) => {
-    return this.api.post("/user/signup", requestBody);
+    return this.api.post("/api/user/signup", requestBody);
     // same as
     // return axios.post("http://localhost:5005/auth/singup");
   };
 
   verify = () => {
-    return this.api.get("/user/verify");
+    return this.api.get("/api/user/verify");
     // same as
     // return axios.post("http://localhost:5005/auth/verify");
   };
 
-  profile = () =>{
-    return this.api.get("/user/profile");
+  userProfile = () =>{
+    return this.api.get("/api/user/profile");
   }
 
   profileUpdate = (requestBody) =>{
-    return this.api.put("/user/profile",requestBody);
+    return this.api.put("/api/user/profile",requestBody);
   }
 
   users = () =>{
-    return this.api.get("/user/users");
+    return this.api.get("/api/user/users");
   }
 
   userDetails = (id) =>{
-    return this.api.get(`/user/userdetail/${id}`);
+    return this.api.get(`/api/user/userdetail/${id}`);
   }
 
   userDelete = (id) =>{
-    return this.api.delete(`/user/userdelete/${id}`);
+    return this.api.delete(`/api/user/userdelete/${id}`);
   }
 
   userUpdate = (id, requestBody) =>{
-    return this.api.put(`/user/userupdate/${id}`, requestBody);
+    return this.api.put(`/api/user/userupdate/${id}`, requestBody);
   }
 
+  userProfessors = () =>{
+    return this.api.get("/api/user/professors");
+  }
 }
 
 // Create one instance (object) of the service

@@ -18,7 +18,7 @@ export default function UserPage() {
     getInitialUsers();
 
     authService
-      .profile()
+      .userProfile()
       .then(res => setUserLogin(res.data))
       .catch(err => console.log(err));
   }, []);
