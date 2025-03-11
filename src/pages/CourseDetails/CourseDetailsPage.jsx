@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "font-awesome/css/font-awesome.min.css";
-import {useParams } from "react-router";
+import { useParams } from "react-router";
 import courseService from '../../services/course.service';
 
 export default function CourseDetailsPage() {
@@ -16,14 +16,14 @@ export default function CourseDetailsPage() {
     const { courseId } = useParams();
     const [courses, setCourses] = useState({})
 
-   /*  const navigate = useNavigate(); */
+    /*  const navigate = useNavigate(); */
 
-   /*  const getInitialCourse = () => {
-        courseService
-            .courseDetails(courseId)
-            .then(res => setCourses(res.data))
-            .catch(err => console.log(err))
-    } */
+    /*  const getInitialCourse = () => {
+         courseService
+             .courseDetails(courseId)
+             .then(res => setCourses(res.data))
+             .catch(err => console.log(err))
+     } */
 
     useEffect(() => {
         courseService
@@ -167,20 +167,20 @@ export default function CourseDetailsPage() {
             <div className="mt-16">
                 <h2 className="text-3xl font-bold text-center mb-6">Why Choose This Course?</h2>
                 <p className="text-lg text-center mb-6">This course is perfect for beginners who want to learn web development from the ground up. It covers both frontend and backend technologies, providing a complete understanding of full-stack web development.</p>
-                <div className="flex justify-center space-x-6">
-                    <div className="card w-1/4 bg-base-100 shadow-xl">
+                <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-6">
+                    <div className="card w-full sm:w-1/4 bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">Experienced Instructor</h2>
                             <p>Learn from an expert instructor with years of experience in web development.</p>
                         </div>
                     </div>
-                    <div className="card w-1/4 bg-base-100 shadow-xl">
+                    <div className="card w-full sm:w-1/4 bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">Comprehensive Curriculum</h2>
                             <p>Covering everything from HTML & CSS to React and Node.js, this course is packed with knowledge.</p>
                         </div>
                     </div>
-                    <div className="card w-1/4 bg-base-100 shadow-xl">
+                    <div className="card w-full sm:w-1/4 bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">Real-World Projects</h2>
                             <p>Build real-world projects to showcase your skills and add to your portfolio.</p>
@@ -188,6 +188,7 @@ export default function CourseDetailsPage() {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
