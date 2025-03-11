@@ -20,7 +20,7 @@ export default function CourseEnrollPage() {
                     <CourseList key={course._id} course={course} />
                 ))
             ) : (
-                <h1 className="text-3xl font-bold text-center mt-8 mb-8">You are not registered in any course.</h1>
+                <h1 className="text-3xl font-bold text-center mt-20 mb-8">You are not registered in any course.</h1>
             )}
         </div>
     );

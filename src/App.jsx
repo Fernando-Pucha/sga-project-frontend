@@ -18,6 +18,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import UserUpdate from "./components/UserUpdate/UserUpdate.jsx";
 import CourseEnrollPage from "./pages/CourseEnrollPage/CourseEnrollPage.jsx";
 import CourseDetailsPage from "./pages/CourseDetails/CourseDetailsPage.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
         <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
-        <Route path="/" element={<IsPrivate><HomePage /> </IsPrivate>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
         <Route path="/profile/edit" element={<IsPrivate><EditProfile /></IsPrivate>} />
         
@@ -40,6 +41,7 @@ function App() {
 
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

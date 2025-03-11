@@ -16,7 +16,7 @@ export default function AddCourse() {
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
-        const requestBody = { title, description, professor };
+        const requestBody = { title, description, professorId:professor };
         courseService
             .courseCreate(requestBody)
             .then(() => {
@@ -75,8 +75,6 @@ export default function AddCourse() {
                             </div>
 
                         ) : null}
-
-
 
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Add Course</button>

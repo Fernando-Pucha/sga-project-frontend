@@ -34,7 +34,7 @@ export default function CoursePage() {
     return (
         <>
         {(userLogin?.role === "admin")|| (userLogin?.role === "profesor") ? (
-                <div className="flex">
+                <div className="flex mt-20">
                   <button className="btn btn-outline btn-primary mt-2 ml-auto mr-14" onClick={() => document.getElementById('my_modal_4').showModal()}>+ Course</button>
                   <dialog id="my_modal_4" className="modal">
                     <div className="modal-box w-11/12 max-w-5xl">
