@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "font-awesome/css/font-awesome.min.css";
-import { useNavigate, useParams } from "react-router";
+import {useParams } from "react-router";
 import courseService from '../../services/course.service';
 
 export default function CourseDetailsPage() {
@@ -16,7 +16,7 @@ export default function CourseDetailsPage() {
     const { courseId } = useParams();
     const [courses, setCourses] = useState({})
 
-    const navigate = useNavigate();
+   /*  const navigate = useNavigate(); */
 
    /*  const getInitialCourse = () => {
         courseService
