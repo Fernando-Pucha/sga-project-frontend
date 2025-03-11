@@ -1,19 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-base-200">
-      {/* Navbar */}
-      {/*  <div className="navbar bg-base-100 shadow-md px-6 fixed top-0 left-0 right-0 z-50">
-        <div className="flex-1">
-          <a href=" " className="btn btn-ghost text-2xl font-bold text-primary">SGA</a>
-        </div>
-        <div className="flex-none space-x-2">
-          <button className="btn btn-secondary">Registrarse</button>
-          <button className="btn btn-primary">Iniciar Sesión</button>
-        </div>
-      </div> */}
 
       {/* Hero Section */}
       <div className="hero min-h-screen" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
@@ -29,7 +20,7 @@ export default function HomePage() {
               Administra cursos, alumnos y profesores en un solo lugar.
             </p>
             <button className="btn btn-accent btn-lg shadow-lg hover:scale-105 transition-transform">
-              Explorar Cursos
+              <Link to="/courses">Explorar Cursos</Link> 
             </button>
           </div>
         </div>

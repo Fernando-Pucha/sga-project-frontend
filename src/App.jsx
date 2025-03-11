@@ -37,7 +37,7 @@ function App() {
 
         <Route path="/courses" element={<IsPrivate><CoursePage /></IsPrivate>} />
         <Route path="/coursesenrolled" element={<IsPrivate><CourseEnrollPage /></IsPrivate>} />
-        <Route path="/courses/details" element={<IsPrivate><CourseDetailsPage /></IsPrivate>} />
+        <Route path="/courses/:courseId/details" element={<IsPrivate><CourseDetailsPage /></IsPrivate>} />
 
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
