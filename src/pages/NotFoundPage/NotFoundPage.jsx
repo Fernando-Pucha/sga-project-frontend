@@ -4,7 +4,7 @@ import "./NotFoundPage.css";
 function NotFoundPage() {
   const navigate = useNavigate();
     return (
-      <div className="error-container">
+      <div className="error-container mt-12">
            <img src="https://www.qualentum.com/wp-content/uploads/2024/03/Imagen-de-storyset-en-Freepik-3-1024x1024.jpg" alt="eror-404" />
            <h1>¡Ups!</h1>
            <p>The page was not found</p>

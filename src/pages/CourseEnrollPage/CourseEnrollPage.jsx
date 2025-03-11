@@ -14,15 +14,16 @@ export default function CourseEnrollPage() {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-20">
             {courses.length > 0 ? (
                 courses.map((course) => (
                     <CourseList key={course._id} course={course} />
                 ))
             ) : (
-                <h1 className="text-3xl font-bold text-center mt-20 mb-8">You are not registered in any course.</h1>
-            )}
-        </div>
+                <h1 className="text-3xl font-bold text-center mt-60 mb-48">You are not registered in any course.</h1>
+    )
+}
+        </div >
     );
 }
 

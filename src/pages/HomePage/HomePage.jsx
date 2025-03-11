@@ -37,7 +37,7 @@ export default function HomePage() {
 
       {/* Sección de Características */}
       <div className="p-10">
-        <h2 className="text-4xl font-bold text-center text-primary mb-8">
+        <h2 className="text-4xl font-bold text-center text-neutral mb-8">
           ¿Qué ofrecemos?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -55,7 +55,7 @@ export default function HomePage() {
             {
               title: "Cursos",
               text: "Explora la mejor oferta educativa disponible.",
-              color: "bg-secondary",
+              color: "bg-neutral",
             },
           ].map((item, index) => (
             <div
@@ -73,7 +73,7 @@ export default function HomePage() {
       <div className="p-10 bg-base-100">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="flex flex-col justify-center p-5">
-          <h2 className="text-4xl font-bold text-center text-primary mb-8">
+          <h2 className="text-4xl font-bold text-center text-neutral mb-8">
           Conoce a nuestros Profesores
         </h2>
             <p className="text-lg text-gray-600 mb-4">
@@ -132,7 +132,7 @@ export default function HomePage() {
 
             <div className="relative group">
               <img
-                src="https://img.freepik.com/foto-gratis/mujer-sonriente-tiro-medio-biblioteca_23-2149204753.jpg?t=st=1741689987~exp=1741693587~hmac=3b7e8a064aae996ec34b2fee2c9f0a1dd30084125cc9322ca55f6da33144ab30&w=1380"
+                src="https://media.istockphoto.com/id/1368496816/es/foto/feliz-estudiante-hispana-de-la-generaci%C3%B3n-z-con-auriculares-visitando-la-biblioteca.jpg?s=612x612&w=0&k=20&c=8ocxAW4-oHKF6B_-TRMBVkk3d7b_jtQ3gmZRm9hFwuA="
                 alt="Profesor 4"
                 className="rounded-lg w-full h-80 object-cover transition-all duration-300 group-hover:scale-105"
               />
