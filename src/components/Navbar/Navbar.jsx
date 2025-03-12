@@ -15,6 +15,8 @@ function Navbar() {
           location.pathname === "/coursesenrolled" ? "Courses Enrolled" :
             location.pathname === "/courses" ? "Courses" : "";
 
+  
+
   return (
     <div className="navbar bg-neutral shadow-sm fixed top-0 left-0 right-0 z-50">
       <div className="navbar-start">
@@ -26,8 +28,8 @@ function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50 absolute">
-            <li><Link to="/">Home</Link></li>
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50 absolute ">
+            <li ><Link to="/">Home</Link></li>
             <li><Link to="/courses">Courses</Link></li>
             <li><Link to="/coursesenrolled">Courses enrolled</Link></li>
             {user?.role === "admin" ? (
@@ -44,9 +46,15 @@ function Navbar() {
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar hover:ring-2 hover:ring-blue-500">
             <div className="w-10 rounded-full">
-              <img
+
+              {isLoggedIn ? (
+                <img alt="Tailwind CSS Navbar component"
+                  src="https://img.daisyui.com/images/profile/demo/2@94.webp" />
+
+              ) : <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/profile/demo/2@94.webp" />
+                src="https://img.freepik.com/vector-premium/icono-usuario-avatar-perfil-usuario-icono-persona-imagen-perfil-silueta-neutral-genero-adecuado_697711-1132.jpg" />}
+
             </div>
           </div>
           <ul

@@ -4,42 +4,72 @@ import "font-awesome/css/font-awesome.min.css";
 import { useParams } from "react-router";
 import courseService from '../../services/course.service';
 import lessonService from '../../services/lesson.service';
+import AddLesson from '../../components/AddLesson/AddLesson';
+import authService from "../../services/auth.service";
 
 export default function CourseDetailsPage() {
-    // Estado para controlar la pestaña activa
-    const [activeTab, setActiveTab] = useState('overview');
 
-    // Función para cambiar de pestaña
+    const [activeTab, setActiveTab] = useState('overview');
+    const { courseId } = useParams();
+    const [course, setCourse] = useState({})
+    const [lesson, setLesson] = useState({})
+    const [userLogin, setUserLogin] = useState([]);
+
+
+
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
 
-    const { courseId } = useParams();
-    const [course, setCourse] = useState({})
-
-    const [lesson, setLesson] = useState({})
-
-    /*  const navigate = useNavigate(); */
-
-    /*  const getInitialCourse = () => {
-         courseService
-             .courseDetails(courseId)
-             .then(res => setCourses(res.data))
-             .catch(err => console.log(err))
-     } */
-
-    useEffect(() => {
+    const getInitialCourse = (courseId) => {
         courseService
             .courseDetails(courseId)
             .then(res => setCourse(res.data))
             .catch(err => console.log(err))
+    }
 
+    const getInitialLesson = (courseId) =>{
         lessonService
             .lessonView(courseId)
             .then(res => setLesson(res.data))
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        authService
+            .userProfile()
+            .then(res => setUserLogin(res.data))
+            .catch(err => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        getInitialCourse(courseId);
+        getInitialLesson(courseId); 
+
     }, [courseId])
 
+
+    const closeModal = () => {
+        getInitialCourse();
+        document.getElementById('my_modal_4').close();
+    };
+
+    const clickDeleteLesson = (courseId, lessonId) => {
+        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar la actividad?")
+
+        if (isConfirmed) {
+            lessonService
+                .lessonDelete(courseId, lessonId)
+                .then(() => {
+                    getInitialCourse(courseId);
+                    getInitialLesson(courseId); 
+
+                })
+                .catch((err) => console.log(err));
+        }
+    };
 
     return (
         <div className="container mx-auto py-10 px-5 mt-6">
@@ -97,37 +127,67 @@ export default function CourseDetailsPage() {
                                     This course will teach you the fundamentals of web development, including HTML, CSS, JavaScript, React, and Node.js. You'll learn how to build websites and modern web applications from scratch.</p>
                             </div>
                         )}
+                        {console.log("ID de usuario", userLogin, course)}
+
 
                         {/* Pestaña Lesson */}
                         {activeTab === 'lesson' && (
                             <>
+                                {
+                                    (userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
+                                    <div className="flex">
+                                        <button className="btn btn-outline btn-primary ml-auto" onClick={() => document.getElementById('my_modal_4').showModal()}>+ Lesson</button>
+                                        <dialog id="my_modal_4" className="modal">
+                                            <div className="modal-box w-11/12 max-w-5xl">
+                                                <h3 className="font-bold text-lg">Add new lesson</h3>
+
+                                                <AddLesson getInitialLesson={getInitialLesson}/>
+
+                                                <button className="btn mt-4" onClick={closeModal}>Close</button>
+                                            </div>
+                                        </dialog>
+                                    </div>
+                                }
+
                                 {lesson.length > 0 ? (
                                     lesson.map(less => (
-                                        <div className="collapse collapse-plus bg-base-200">
+                                        <div key={less._id} className="collapse collapse-plus bg-base-200">
                                             <input type="radio" name="my-accordion-3" defaultChecked />
                                             <div className="collapse-title text-xl font-medium">{less.title}</div>
                                             <div className="collapse-content">
-                                                <p>{less.content}</p>
+                                                {/* <p>{less.content}</p> */}
+                                                <div className="text-left mt-6" style={{ whiteSpace: 'pre-wrap' }}>{less.content}</div>
+                                                {less.videoUrl ? (
+                                                    <>
 
-                                                <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>open modal</button>
-                                                <dialog id="my_modal_2" className="modal">
-                                                    <div className="modal-box">
-                                                       {/*  <h3 className="font-bold text-lg">Hello!</h3>
-                                                        <p className="py-4">Press ESC key or click outside to close</p> */}
-                                                        <iframe
-                                                            className="rounded-lg"
-                                                            width="640"
-                                                            height="360"
-                                                            src={less.videoUrl}
-                                                            title={less.videoUrl}
-                                                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                            allowFullScreen
-                                                        ></iframe>
+                                                        <button className="btn btn-primary" onClick={() => document.getElementById('my_modal_2').showModal()}>Video</button>
+
+                                                        <dialog id="my_modal_2" className="modal ">
+                                                            <div className="modal-box " >
+                                                                <iframe
+                                                                    className="rounded-lg"
+                                                                    width="640"
+                                                                    height="360"
+                                                                    src={less.videoUrl}
+                                                                    title={less.title}
+                                                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                    allowFullScreen
+                                                                ></iframe>
+                                                            </div>
+                                                            <form method="dialog" className="modal-backdrop">
+                                                                <button>close</button>
+                                                            </form>
+                                                        </dialog>
+                                                    </>
+
+                                                ) : null}
+                                                {
+                                                    (userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
+                                                    <div className='flex justify-between mt-4'>
+                                                        <button className="btn btn-secondary">Edit</button>
+                                                        <button className="btn btn-accent" onClick={() => clickDeleteLesson(courseId, less._id)}> Delete</button>
                                                     </div>
-                                                    <form method="dialog" className="modal-backdrop">
-                                                        <button>close</button>
-                                                    </form>
-                                                </dialog>
+                                                }
                                             </div>
                                         </div>
                                     ))
