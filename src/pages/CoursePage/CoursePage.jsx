@@ -33,7 +33,7 @@ export default function CoursePage() {
 
     return (
         <>
-            {(userLogin?.role === "admin") || (userLogin?.role === "profesor") ? (
+            {((userLogin?.role === "admin") || (userLogin?.role === "profesor")) &&
                 <div className="flex mt-20">
                     <button className="btn btn-outline btn-primary mt-2 ml-auto mr-14" onClick={() => document.getElementById('my_modal_4').showModal()}>+ Course</button>
                     <dialog id="my_modal_4" className="modal">
@@ -44,10 +44,9 @@ export default function CoursePage() {
                         </div>
                     </dialog>
                 </div>
+            }
 
-            ) : null}
-
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img

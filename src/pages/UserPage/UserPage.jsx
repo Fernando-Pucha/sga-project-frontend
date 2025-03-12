@@ -30,19 +30,18 @@ export default function UserPage() {
 
   return (
     <>
-      {userLogin?.role === "admin" ? (
+      {userLogin?.role === "admin" &&
         <div className="flex mt-20">
           <button className="btn btn-outline btn-primary mt-2 ml-auto mr-4" onClick={() => document.getElementById('my_modal_4').showModal()}>+ User</button>
           <dialog id="my_modal_4" className="modal">
             <div className="modal-box w-11/12 max-w-5xl">
               <h3 className="font-bold text-lg">Add new user</h3>
-              <AddUser /> 
+              <AddUser />
               <button className="btn mt-4" onClick={closeModal}>Close</button>
             </div>
           </dialog>
         </div>
-
-      ) : null}
+      }
 
       <div className="overflow-x-auto mt-2">
         <table className="table">

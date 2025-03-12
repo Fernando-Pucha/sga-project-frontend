@@ -6,6 +6,7 @@ import courseService from '../../services/course.service';
 import lessonService from '../../services/lesson.service';
 import AddLesson from '../../components/AddLesson/AddLesson';
 import authService from "../../services/auth.service";
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 
 export default function CourseDetailsPage() {
 
@@ -28,7 +29,7 @@ export default function CourseDetailsPage() {
             .catch(err => console.log(err))
     }
 
-    const getInitialLesson = (courseId) =>{
+    const getInitialLesson = (courseId) => {
         lessonService
             .lessonView(courseId)
             .then(res => setLesson(res.data))
@@ -46,7 +47,7 @@ export default function CourseDetailsPage() {
 
     useEffect(() => {
         getInitialCourse(courseId);
-        getInitialLesson(courseId); 
+        getInitialLesson(courseId);
 
     }, [courseId])
 
@@ -64,7 +65,7 @@ export default function CourseDetailsPage() {
                 .lessonDelete(courseId, lessonId)
                 .then(() => {
                     getInitialCourse(courseId);
-                    getInitialLesson(courseId); 
+                    getInitialLesson(courseId);
 
                 })
                 .catch((err) => console.log(err));
@@ -140,9 +141,7 @@ export default function CourseDetailsPage() {
                                         <dialog id="my_modal_4" className="modal">
                                             <div className="modal-box w-11/12 max-w-5xl">
                                                 <h3 className="font-bold text-lg">Add new lesson</h3>
-
-                                                <AddLesson getInitialLesson={getInitialLesson}/>
-
+                                                <AddLesson getInitialLesson={getInitialLesson} />
                                                 <button className="btn mt-4" onClick={closeModal}>Close</button>
                                             </div>
                                         </dialog>
@@ -155,34 +154,9 @@ export default function CourseDetailsPage() {
                                             <input type="radio" name="my-accordion-3" defaultChecked />
                                             <div className="collapse-title text-xl font-medium">{less.title}</div>
                                             <div className="collapse-content">
-                                                {/* <p>{less.content}</p> */}
                                                 <div className="text-left mt-6" style={{ whiteSpace: 'pre-wrap' }}>{less.content}</div>
-                                                {less.videoUrl ? (
-                                                    <>
-
-                                                        <button className="btn btn-primary" onClick={() => document.getElementById('my_modal_2').showModal()}>Video</button>
-
-                                                        <dialog id="my_modal_2" className="modal ">
-                                                            <div className="modal-box " >
-                                                                <iframe
-                                                                    className="rounded-lg"
-                                                                    width="640"
-                                                                    height="360"
-                                                                    src={less.videoUrl}
-                                                                    title={less.title}
-                                                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                    allowFullScreen
-                                                                ></iframe>
-                                                            </div>
-                                                            <form method="dialog" className="modal-backdrop">
-                                                                <button>close</button>
-                                                            </form>
-                                                        </dialog>
-                                                    </>
-
-                                                ) : null}
-                                                {
-                                                    (userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
+                                                {less.videoUrl && <VideoPlayer videoUrl={less.videoUrl} />}
+                                                {(userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
                                                     <div className='flex justify-between mt-4'>
                                                         <button className="btn btn-secondary">Edit</button>
                                                         <button className="btn btn-accent" onClick={() => clickDeleteLesson(courseId, less._id)}> Delete</button>
@@ -192,7 +166,7 @@ export default function CourseDetailsPage() {
                                         </div>
                                     ))
                                 ) : (
-                                    <p>No activities to show</p>
+                                    <p>No lesson to show</p>
                                 )}
                                 <div>
                                     <h2 className="card-title">Lessons</h2>

@@ -15,7 +15,7 @@ function Navbar() {
           location.pathname === "/coursesenrolled" ? "Courses Enrolled" :
             location.pathname === "/courses" ? "Courses" : "";
 
-  
+
 
   return (
     <div className="navbar bg-neutral shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -32,9 +32,9 @@ function Navbar() {
             <li ><Link to="/">Home</Link></li>
             <li><Link to="/courses">Courses</Link></li>
             <li><Link to="/coursesenrolled">Courses enrolled</Link></li>
-            {user?.role === "admin" ? (
+            {user?.role === "admin" &&
               <li><Link to="/users">Users</Link></li>
-            ) : null}
+            }
           </ul>
         </div>
       </div>

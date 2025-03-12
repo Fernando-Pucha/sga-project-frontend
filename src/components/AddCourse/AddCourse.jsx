@@ -5,6 +5,7 @@ import courseService from "../../services/course.service";
 export default function AddCourse() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
     const [professor, setProfessor] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [userLogin, setUserLogin] = useState([]);
@@ -13,16 +14,18 @@ export default function AddCourse() {
     const handleTitle = (e) => setTitle(e.target.value);
     const handleDescription = (e) => setDescription(e.target.value);
     const handleProfessor = (e) => setProfessor(e.target.value);
+    const handleImage = (e) => setImage(e.target.value);
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
-        const requestBody = { title, description, professorId:professor };
+        const requestBody = { title, description, professorId: professor, image};
         courseService
             .courseCreate(requestBody)
             .then(() => {
                 setTitle("");
                 setDescription("");
                 setProfessor("");
+                setImage("");
             })
             .catch((error) => {
                 const errorDescription = error.response.data.message;
@@ -60,8 +63,14 @@ export default function AddCourse() {
                             </label>
                             <input type="textarea" name="description" value={description} onChange={handleDescription} className="input input-bordered" required />
                         </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Image</span>
+                            </label>
+                            <input type="text" name="image" value={image} onChange={handleImage} className="input input-bordered" required />
+                        </div>
 
-                        {userLogin?.role === "admin" ? (
+                        {userLogin?.role === "admin" &&
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Professor</span>
@@ -73,8 +82,7 @@ export default function AddCourse() {
                                     ))}
                                 </select>
                             </div>
-
-                        ) : null}
+                        }
 
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Add Course</button>
