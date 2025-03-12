@@ -9,7 +9,7 @@ export default function CourseList({ course }) {
 
                 <Link to={`${FrontApiURL}/courses/${course._id}/details`}>
                     <img
-                        src="https://i.blogs.es/8ba74b/man-2562325_1920/1200_800.webp"
+                        src={course.image}
                         alt="Shoes" />
                 </Link>
 
@@ -26,7 +26,11 @@ export default function CourseList({ course }) {
                 </div>
                 <div className="flex justify-between w-full">
                     <h2 className="text-blue-500 font-bold"><i class="fa fa-book"></i> {course.lessons.length} Lesson</h2>
-                    <h2 className="font-bold text-lg text-accent">Free</h2>
+                    {course.price > 0 ? (
+                        <div className="text-2xl font-bold text-accent">€ {course.price}</div>
+                    ) : (
+                        course.price === 0 && <h2 className="font-bold text-lg text-primary">Free</h2>
+                    )}
                 </div>
             </div>
         </div>

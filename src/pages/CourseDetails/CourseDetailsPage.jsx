@@ -14,7 +14,7 @@ export default function CourseDetailsPage() {
     };
 
     const { courseId } = useParams();
-    const [courses, setCourses] = useState({})
+    const [course, setCourse] = useState({})
 
     /*  const navigate = useNavigate(); */
 
@@ -28,7 +28,7 @@ export default function CourseDetailsPage() {
     useEffect(() => {
         courseService
             .courseDetails(courseId)
-            .then(res => setCourses(res.data))
+            .then(res => setCourse(res.data))
             .catch(err => console.log(err))
     }, [courseId])
 
@@ -36,10 +36,10 @@ export default function CourseDetailsPage() {
     return (
         <div className="container mx-auto py-10 px-5 mt-6">
             {/* Course Header */}
-            <div className="hero min-h-[60vh] bg-cover bg-center" style={{ backgroundImage: 'url(https://admin.12grids.com/uploads/blogs/original_cover_images/top-11-web-development-technologies-you-must-know-in-2024-12grids-compressed.jpg)' }}>
+            <div className="hero min-h-[60vh] bg-cover bg-center" style={{ backgroundImage: `url(${course.image})`}}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="text-center text-white">
-                    <h1 className="text-4xl font-extrabold mb-4">{courses.title}</h1>
+                    <h1 className="text-4xl font-extrabold mb-4">{course.title}</h1>
                     <p className="text-lg mb-4">Learn full-stack web development, build websites, and create modern web applications.</p>
                     <Link to="/enroll" className="btn btn-primary">Enroll Now</Link>
                 </div>
@@ -85,7 +85,7 @@ export default function CourseDetailsPage() {
                             <div>
                                 <h2 className="card-title">Course Overview</h2>
                                 <p className="text-left mt-6">
-                                    {courses.description} <br /> <br />
+                                    {course.description} <br /> <br />
                                     This course will teach you the fundamentals of web development, including HTML, CSS, JavaScript, React, and Node.js. You'll learn how to build websites and modern web applications from scratch.</p>
                             </div>
                         )}
@@ -109,7 +109,9 @@ export default function CourseDetailsPage() {
                         {activeTab === 'instructor' && (
                             <div>
                                 <h2 className="card-title">Instructor</h2>
-                                <p className="text-left mt-6">Jane Smith - Experienced Web Developer and Full-stack Engineer with over 8 years of experience building web applications.</p>
+                                <p className="text-left mt-6">
+                                    {course.professor.name} <br/> <br/> 
+                                    Experienced Web Developer and Full-stack Engineer with over 8 years of experience building web applications.</p>
                             </div>
                         )}
 
@@ -133,28 +135,35 @@ export default function CourseDetailsPage() {
                             <div>
                                 <i className="fa fa-tag"></i> Price:
                             </div>
-                            <div className="text-2xl font-bold text-blue-600">€ 149.99</div>
+
+                            {course.price > 0 ? (
+                               <div className="text-2xl font-bold text-blue-600">€ {course.price}</div>
+                            ) : (
+                                course.price === 0 && <h2 className="font-bold text-lg text-accent">Free</h2>
+                            )}
+
+                            
                         </div>
                         <div className="divider divider-primary"></div>
                         <div className='flex justify-between'>
                             <div>
                                 <i className="fa fa-globe"></i> Language:
                             </div>
-                            <div className="font-bold">English</div>
+                            <div className="font-bold">{course.language}</div>
                         </div>
                         <div className="divider divider-primary"></div>
                         <div className='flex justify-between'>
                             <div>
                                 <i className="fa fa-hourglass-half"></i> Duration:
                             </div>
-                            <div className="font-bold">300 hour</div>
+                            <div className="font-bold">{course.duration} hour</div>
                         </div>
                         <div className="divider divider-primary"></div>
                         <div className='flex justify-between'>
                             <div>
                                 <i className="fa fa-folder"></i> Category:
                             </div>
-                            <div className="font-bold">Development</div>
+                            <div className="font-bold">{course.category}</div>
                         </div>
 
                         <p className="mt-8 mb-4">Get lifetime access to the course content and updates.</p>

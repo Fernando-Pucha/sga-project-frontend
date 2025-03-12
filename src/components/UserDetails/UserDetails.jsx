@@ -33,7 +33,7 @@ export default function UserDetails() {
     };
 
     return (
-        <div className="hero bg-base-200 min-h-[91vh]">
+        <div className="hero bg-base-200 min-h-[90vh] mt-14">
             <div className="hero-content flex-col lg:flex-row gap-44">
                 <img
                     src="https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?semt=ais_hybrid"
@@ -58,7 +58,7 @@ export default function UserDetails() {
                         
                         <button className="btn btn-accent" onClick={() => deleteUser(user._id)}>Delete</button>
 
-                        <button className="btn btn-secondary" onClick={()=>navigate("/users")} >Back</button>
+                        <button className="btn btn-neutral" onClick={()=>navigate("/users")} >Back</button>
                     </div>
 
                 </div>

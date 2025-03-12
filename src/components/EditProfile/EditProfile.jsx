@@ -42,7 +42,7 @@ export default function EditProfile() {
   return (
     <>
       <form className="formAddProduct" onSubmit={handleFormSubmit}>
-        <div className="hero bg-base-200 min-h-[91vh]">
+        <div className="hero bg-base-200 min-h-[90vh] mt-14">
           <div className="hero-content flex-col lg:flex-row gap-44">
             <img
               src="https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?semt=ais_hybrid"
@@ -64,13 +64,17 @@ export default function EditProfile() {
                 <option value="profesor">Teacher</option>
                 <option value="estudiante">Student</option>
               </select>
-              <button type="submit" className="btn btn-primary w-32 mt-7">Update</button>
+              <div className="flex gap-4 items-center justify-center mt-7">
+                <button type="submit" className="btn btn-primary w-32">Update</button>
+                <button className="btn btn-neutral" onClick={() => navigate(-1)} >Back</button>
+              </div>
+
             </div>
-            
+
           </div>
-         
+
         </div>
-     
+
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </>

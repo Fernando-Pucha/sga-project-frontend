@@ -46,21 +46,22 @@ export default function CoursePage() {
                 </div>
 
             ) : null}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
+
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img
-                            src="https://grupopremiumformacion.com/wp-content/uploads/2023/07/Curso-Microsoft-Word.jpg"
+                            src="https://kinsta.com/es/wp-content/uploads/sites/8/2023/04/react-must-be-in-scope-when-using-jsx.jpg"
                             alt="Word" />
                     </figure>
                     <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">Microsoft Word</h2>
+                        <h2 className="card-title">React</h2>
                         <div className="space-y-0">
-                            <p className="text-left">Professor: Javier Barrionuevo</p>
-                            <p className="text-left">Enrolled students: 5</p>
+                            <p className="text-left">Professor: Carlos</p>
+                            <p className="text-left">Enrolled students: 18</p>
                         </div>
                         <div className="flex justify-between w-full">
-                            <h2 className="text-blue-500 font-bold"><i class="fa fa-book"></i> 5 Lesson</h2>
+                            <h2 className="text-blue-500 font-bold"><i class="fa fa-book"></i> 10 Lesson</h2>
                             <h2 className="font-bold text-lg text-accent">Free</h2>
                         </div>
                         {/*                 <div className="card-actions justify-end">
@@ -71,14 +72,14 @@ export default function CoursePage() {
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img
-                            src="https://patronesdecabotaje.org.ar/ajuar/wp-content/uploads/2023/07/cursos-excel.jpg"
+                            src="https://www.dongee.com/tutoriales/content/images/2023/12/image-112.png"
                             alt="Excel" />
                     </figure>
                     <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">Microsoft Excel</h2>
+                        <h2 className="card-title">CSS Básico</h2>
                         <div className="space-y-0">
                             <p className="text-left">Professor: Javier Barrionuevo</p>
-                            <p className="text-left">Enrolled students: 5</p>
+                            <p className="text-left">Enrolled students: 10</p>
                         </div>
                         <div className="flex justify-between w-full">
                             <h2 className="text-blue-500 font-bold"><i class="fa fa-book"></i> 5 Lesson</h2>
@@ -89,11 +90,11 @@ export default function CoursePage() {
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img
-                            src="https://img.odcdn.com.br/wp-content/uploads/2024/06/imagem_2024-06-27_110434641-1920x1080.png"
+                            src="https://admin.12grids.com/uploads/blogs/original_cover_images/top-11-web-development-technologies-you-must-know-in-2024-12grids-compressed.jpg"
                             alt="PowerPoint" />
                     </figure>
                     <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">Microsoft PowerPoint</h2>
+                        <h2 className="card-title">Web Development</h2>
                         <div className="space-y-0">
                             <p className="text-left">Professor: Javier Barrionuevo</p>
                             <p className="text-left">Enrolled students: 5</p>
