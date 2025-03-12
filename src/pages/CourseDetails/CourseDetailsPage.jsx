@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "font-awesome/css/font-awesome.min.css";
 import { useParams } from "react-router";
 import courseService from '../../services/course.service';
+import lessonService from '../../services/lesson.service';
 
 export default function CourseDetailsPage() {
     // Estado para controlar la pestaña activa
@@ -15,6 +16,8 @@ export default function CourseDetailsPage() {
 
     const { courseId } = useParams();
     const [course, setCourse] = useState({})
+
+    const [lesson, setLesson] = useState({})
 
     /*  const navigate = useNavigate(); */
 
@@ -30,13 +33,18 @@ export default function CourseDetailsPage() {
             .courseDetails(courseId)
             .then(res => setCourse(res.data))
             .catch(err => console.log(err))
+
+        lessonService
+            .lessonView(courseId)
+            .then(res => setLesson(res.data))
+            .catch(err => console.log(err))
     }, [courseId])
 
 
     return (
         <div className="container mx-auto py-10 px-5 mt-6">
             {/* Course Header */}
-            <div className="hero min-h-[60vh] bg-cover bg-center" style={{ backgroundImage: `url(${course.image})`}}>
+            <div className="hero min-h-[60vh] bg-cover bg-center" style={{ backgroundImage: `url(${course.image})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="text-center text-white">
                     <h1 className="text-4xl font-extrabold mb-4">{course.title}</h1>
@@ -92,17 +100,53 @@ export default function CourseDetailsPage() {
 
                         {/* Pestaña Lesson */}
                         {activeTab === 'lesson' && (
-                            <div>
-                                <h2 className="card-title">Lessons</h2>
-                                <ul className="text-left mt-6">
-                                    <li>Module 1: Introduction to Web Development</li>
-                                    <li>Module 2: HTML & CSS Fundamentals</li>
-                                    <li>Module 3: JavaScript Basics</li>
-                                    <li>Module 4: Introduction to React</li>
-                                    <li>Module 5: Building Full-Stack Applications with Node.js</li>
-                                    <li>Module 6: Final Project</li>
-                                </ul>
-                            </div>
+                            <>
+                                {lesson.length > 0 ? (
+                                    lesson.map(less => (
+                                        <div className="collapse collapse-plus bg-base-200">
+                                            <input type="radio" name="my-accordion-3" defaultChecked />
+                                            <div className="collapse-title text-xl font-medium">{less.title}</div>
+                                            <div className="collapse-content">
+                                                <p>{less.content}</p>
+
+                                                <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>open modal</button>
+                                                <dialog id="my_modal_2" className="modal">
+                                                    <div className="modal-box">
+                                                       {/*  <h3 className="font-bold text-lg">Hello!</h3>
+                                                        <p className="py-4">Press ESC key or click outside to close</p> */}
+                                                        <iframe
+                                                            className="rounded-lg"
+                                                            width="640"
+                                                            height="360"
+                                                            src={less.videoUrl}
+                                                            title={less.videoUrl}
+                                                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                            allowFullScreen
+                                                        ></iframe>
+                                                    </div>
+                                                    <form method="dialog" className="modal-backdrop">
+                                                        <button>close</button>
+                                                    </form>
+                                                </dialog>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No activities to show</p>
+                                )}
+                                <div>
+                                    <h2 className="card-title">Lessons</h2>
+                                    <ul className="text-left mt-6">
+                                        <li>Module 1: Introduction to Web Development</li>
+                                        <li>Module 2: HTML & CSS Fundamentals</li>
+                                        <li>Module 3: JavaScript Basics</li>
+                                        <li>Module 4: Introduction to React</li>
+                                        <li>Module 5: Building Full-Stack Applications with Node.js</li>
+                                        <li>Module 6: Final Project</li>
+                                    </ul>
+                                </div>
+                            </>
+
                         )}
 
                         {/* Pestaña Instructor */}
@@ -110,7 +154,7 @@ export default function CourseDetailsPage() {
                             <div>
                                 <h2 className="card-title">Instructor</h2>
                                 <p className="text-left mt-6">
-                                    {course.professor.name} <br/> <br/> 
+                                    {course.professor.name} <br /> <br />
                                     Experienced Web Developer and Full-stack Engineer with over 8 years of experience building web applications.</p>
                             </div>
                         )}
@@ -137,12 +181,12 @@ export default function CourseDetailsPage() {
                             </div>
 
                             {course.price > 0 ? (
-                               <div className="text-2xl font-bold text-blue-600">€ {course.price}</div>
+                                <div className="text-2xl font-bold text-blue-600">€ {course.price}</div>
                             ) : (
                                 course.price === 0 && <h2 className="font-bold text-lg text-accent">Free</h2>
                             )}
 
-                            
+
                         </div>
                         <div className="divider divider-primary"></div>
                         <div className='flex justify-between'>
@@ -198,6 +242,6 @@ export default function CourseDetailsPage() {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
