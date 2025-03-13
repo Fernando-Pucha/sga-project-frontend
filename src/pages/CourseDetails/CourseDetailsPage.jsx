@@ -95,14 +95,9 @@ export default function CourseDetailsPage() {
                             className={`py-3 px-4 font-medium text-sm ${activeTab === 'overview' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600'}`}
                             onClick={() => handleTabChange('overview')}
                         >
-                            Overview
-                        </button>
-                        <button
-                            className={`py-3 px-4 font-medium text-sm ${activeTab === 'lesson' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600'}`}
-                            onClick={() => handleTabChange('lesson')}
-                        >
                             Lessons
                         </button>
+                        
                         <button
                             className={`py-3 px-4 font-medium text-sm ${activeTab === 'instructor' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600'}`}
                             onClick={() => handleTabChange('instructor')}
@@ -119,78 +114,70 @@ export default function CourseDetailsPage() {
 
                     {/* Contenido de las pestañas */}
                     <div className="card-body">
-                        {/* Pestaña Overview */}
+
+                       {/* Pestaña Lesson */}
+                       {console.log(course)}
                         {activeTab === 'overview' && (
-                            <div>
-                                <h2 className="card-title">Course Overview</h2>
-                                <p className="text-left mt-6">
-                                    {course.description} <br /> <br />
-                                    This course will teach you the fundamentals of web development, including HTML, CSS, JavaScript, React, and Node.js. You'll learn how to build websites and modern web applications from scratch.</p>
-                            </div>
-                        )}
-
-                        {/* Pestaña Lesson */}
-                        {activeTab === 'lesson' && (
+                            
                             <>
-                                {
-                                    (userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
-                                    <div className="flex">
-                                        <button className="btn btn-outline btn-primary ml-auto" onClick={() => document.getElementById('my_modal_4').showModal()}>+ Lesson</button>
-                                        <dialog id="my_modal_4" className="modal">
-                                            <div className="modal-box w-11/12 max-w-5xl">
-                                                <h3 className="font-bold text-lg">Add new lesson</h3>
-                                                <AddLesson getInitialLesson={getInitialLesson} />
-                                                <button className="btn mt-4" onClick={closeModal}>Close</button>
-                                            </div>
-                                        </dialog>
-                                    </div>
-                                }
-
-                                {lesson.length > 0 ? (
-                                    lesson.map(less => (
-                                        <div key={less._id} className="collapse collapse-plus bg-base-200">
-                                            <input type="radio" name="my-accordion-3" defaultChecked />
-                                            <div className="collapse-title text-xl font-medium">{less.title}</div>
-                                            <div className="collapse-content">
-                                                <div className="text-left mt-6" style={{ whiteSpace: 'pre-wrap' }}>{less.content}</div>
-                                                {less.videoUrl && <VideoPlayer videoUrl={less.videoUrl} />}
-                                                {(userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course.professor._id.toString())) &&
-                                                    <div className='flex justify-between mt-4'>
-                                                        <button >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-green-500">
-                                                                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                                                <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                                            </svg>
-
-                                                        </button>
-                                                        <button onClick={() => clickDeleteLesson(courseId, less._id)}>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-red-700">
-                                                                <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clipRule="evenodd" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </div>
+                            {
+                                (userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course?.professor?._id.toString())) &&
+                                <div className="flex">
+                                    <button className="btn btn-outline btn-primary ml-auto" onClick={() => document.getElementById('my_modal_4').showModal()}>+ Lesson</button>
+                                    <dialog id="my_modal_4" className="modal">
+                                        <div className="modal-box w-11/12 max-w-5xl">
+                                            <h3 className="font-bold text-lg">Add new lesson</h3>
+                                            <AddLesson getInitialLesson={getInitialLesson} />
+                                            <button className="btn mt-4" onClick={closeModal}>Close</button>
                                         </div>
-                                    ))
-                                ) : (
-                                    <p>No lesson to show</p>
-                                )}
-                                <div>
-                                    <h2 className="card-title">Lessons</h2>
-                                    <ul className="text-left mt-6">
-                                        <li>Module 1: Introduction to Web Development</li>
-                                        <li>Module 2: HTML & CSS Fundamentals</li>
-                                        <li>Module 3: JavaScript Basics</li>
-                                        <li>Module 4: Introduction to React</li>
-                                        <li>Module 5: Building Full-Stack Applications with Node.js</li>
-                                        <li>Module 6: Final Project</li>
-                                    </ul>
+                                    </dialog>
                                 </div>
-                            </>
+                            }
 
+                            {lesson.length > 0 ? (
+                                lesson.map(less => (
+                                    <div key={less._id} className="collapse collapse-plus bg-base-200">
+                                        <input type="radio" name="my-accordion-3" defaultChecked />
+                                        <div className="collapse-title text-xl font-medium">{less.title}</div>
+                                        <div className="collapse-content">
+                                            <div className="text-left mt-6" style={{ whiteSpace: 'pre-wrap' }}>{less.content}</div>
+                                            {less.videoUrl && <VideoPlayer videoUrl={less.videoUrl} />}
+                                            {(userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course?.professor?._id.toString())) &&
+                                                <div className='flex justify-between mt-4'>
+                                                    <button >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-green-500">
+                                                            <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                                            <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                                        </svg>
+
+                                                    </button>
+                                                    <button onClick={() => clickDeleteLesson(courseId, less._id)}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-red-700">
+                                                            <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clipRule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No lesson to show</p>
+                            )}
+                            <div>
+                                <h2 className="card-title">Lessons</h2>
+                                <ul className="text-left mt-6">
+                                    <li>Module 1: Introduction to Web Development</li>
+                                    <li>Module 2: HTML & CSS Fundamentals</li>
+                                    <li>Module 3: JavaScript Basics</li>
+                                    <li>Module 4: Introduction to React</li>
+                                    <li>Module 5: Building Full-Stack Applications with Node.js</li>
+                                    <li>Module 6: Final Project</li>
+                                </ul>
+                            </div>
+                        </>
                         )}
-
+                        
                         {/* Pestaña Instructor */}
                         {activeTab === 'instructor' && (
                             <div>
@@ -218,7 +205,7 @@ export default function CourseDetailsPage() {
                     <div className="card-body">
                         <div className='flex justify-between'>
                             <h2 className="card-title">Course Info</h2>
-                            {(userLogin?.role === "admin" || (userLogin?.role === "profesor" && userLogin._id === course.professor._id)) &&
+                            {(userLogin?.role === "admin" || (userLogin?.role === "profesor" && userLogin._id === course?.professor?._id)) &&
                                 <button>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-blue-900">
                                         <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />

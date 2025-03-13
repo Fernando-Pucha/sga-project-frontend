@@ -24,10 +24,8 @@ export default function CoursePage() {
     }
 
     useEffect(() => {
-        // Cargar cursos
         getInitialCourses();
         
-        // Cargar perfil de usuario
         authService
             .userProfile()
             .then(res => setUserLogin(res.data))
@@ -88,7 +86,7 @@ export default function CoursePage() {
                                 userLogin={userLogin} 
                                 courseId={course._id} 
                                 clickDeleteCourse={clickDeleteCourse}
-                                refreshCourses={getInitialCourses} // Pasando la función para refrescar los cursos
+                                refreshCourses={getInitialCourses}
                             />
                         ))
                     ) : (
