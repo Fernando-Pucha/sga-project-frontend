@@ -126,7 +126,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                             <label className="label">
                                 <span className="label-text">Price (€)</span>
                             </label>
-                            <input  type="number" name="price" value={price} onChange={handlePrice} className="input input-bordered" min="0" step="0.01"/>
+                            <input  type="number" name="price" value={price} onChange={handlePrice} className="input input-bordered" min="0" step="0.1"/>
                         </div>
                         
                         <div className="form-control">

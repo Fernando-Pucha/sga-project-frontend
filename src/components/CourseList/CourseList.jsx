@@ -28,7 +28,6 @@ export default function CourseList({ course, userLogin, courseId, clickDeleteCou
                 </h2>
                 <div className="space-y-0">
                     {course.professor?.name && <p className="text-left">Professor: {course.professor.name}</p>}
-                    <p className="text-left">Enrolled students:</p>
                 </div>
                 <div className="flex justify-between w-full">
                     <h2 className="text-blue-500 font-bold"><i className="fa fa-book"></i> {course.lessons?.length || 0} Lesson</h2>

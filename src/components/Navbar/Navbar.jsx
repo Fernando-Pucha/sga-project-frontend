@@ -1,7 +1,8 @@
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
+import authService from "../../services/auth.service";
 
 function Navbar() {
 
@@ -15,7 +16,16 @@ function Navbar() {
           location.pathname === "/coursesenrolled" ? "Courses Enrolled" :
             location.pathname === "/courses" ? "Courses" : "";
 
+  const [userlog, setUserlog] = useState([]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      authService
+        .userProfile()
+        .then(res => setUserlog(res.data))
+        .catch(err => console.log(err));
+    }
+  }, [location.pathname, isLoggedIn]);
 
   return (
     <div className="navbar bg-neutral shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -37,7 +47,7 @@ function Navbar() {
             {user?.role === "estudiante" &&
               <li><Link to="/mycoursesstudent">My Courses</Link></li>
             }
-            
+
             {user?.role === "admin" &&
               <li><Link to="/users">Users</Link></li>
             }
@@ -48,7 +58,7 @@ function Navbar() {
         <Link to="/" className="btn btn-ghost text-xl hover:ring-2 hover:ring-blue-500">SGA <p>{navTag}</p> </Link>
       </div>
       <div className="navbar-end">
-        <span className="text-white">{user && user.name}</span>
+        <span className="text-white">{isLoggedIn && userlog.name}</span>
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar hover:ring-2 hover:ring-blue-500">
             <div className="w-10 rounded-full">
