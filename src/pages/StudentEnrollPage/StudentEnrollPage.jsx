@@ -3,6 +3,7 @@ import courseService from "../../services/course.service";
 import CourseList from "../../components/CourseList/CourseList";
 import authService from "../../services/auth.service";
 import AddCourse from "../../components/AddCourse/AddCourse";
+import enrollService from "../../services/enroll.service";
 
 export default function CoursePage() {
     const [courses, setCourses] = useState([]);
@@ -11,8 +12,8 @@ export default function CoursePage() {
 
     const getInitialCourses = () => {
         setIsLoading(true);
-        courseService
-            .courseMycourses()
+        enrollService
+            .enrollView()
             .then(res => {
                 setCourses(res.data);
                 setIsLoading(false);
@@ -70,7 +71,7 @@ export default function CoursePage() {
                 </div>
             }
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-24 mb-16">
                
                 {isLoading ? (
                     <div className="col-span-3 text-center py-10">

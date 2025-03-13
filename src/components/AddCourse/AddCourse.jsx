@@ -54,7 +54,7 @@ export default function AddCourse() {
     return (
         <div className="hero bg-base-200" style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
+                <div className="card bg-base-100 bg-opacity-50 w-full max-w-lg shrink-0 shadow-2xl">
                     <form onSubmit={handleSignupSubmit} className="card-body">
 
                         <div className="form-control">
@@ -66,8 +66,8 @@ export default function AddCourse() {
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Description</span>
-                            </label>
-                            <input type="textarea" name="description" value={description} onChange={handleDescription} className="input input-bordered" required />
+                            </label>                            
+                            <textarea name="description" value={description} onChange={handleDescription} className="textarea textarea-bordered h-24" required/>
                         </div>
                         <div className="form-control">
                             <label className="label">

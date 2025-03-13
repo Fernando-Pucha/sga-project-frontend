@@ -72,7 +72,7 @@ export default function CoursePage() {
                 </div>
             }
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-20">
                 {/* Ejemplos de cursos estáticos */}
                 <div className="card card-compact bg-base-100 w-96 shadow-xl">
                     <figure>
@@ -145,11 +145,11 @@ export default function CoursePage() {
                                 userLogin={userLogin} 
                                 courseId={course._id} 
                                 clickDeleteCourse={clickDeleteCourse}
-                                refreshCourses={getInitialCourses} // Pasando la función para refrescar los cursos
+                                refreshCourses={getInitialCourses}
                             />
                         ))
                     ) : (
-                        <h1 className="col-span-3 text-3xl font-bold text-center mt-8 mb-8">No hay cursos para mostrar</h1>
+                        <h1 className="col-span-3 text-3xl font-bold text-center p-40">No courses to show</h1>
                     )
                 )}
             </div>

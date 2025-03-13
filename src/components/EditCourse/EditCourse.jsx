@@ -8,7 +8,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-/*     const [price, setPrice] = useState(0); */
+    const [price, setPrice] = useState(0);
     const [professor, setProfessor] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [userLogin, setUserLogin] = useState([]);
@@ -19,7 +19,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
     const handleTitle = (e) => setTitle(e.target.value);
     const handleDescription = (e) => setDescription(e.target.value);
     const handleProfessor = (e) => setProfessor(e.target.value);
-   /*  const handlePrice = (e) => setPrice(Number(e.target.value)); */
+    const handlePrice = (e) => setPrice(Number(e.target.value));
     const handleImage = (e) => {
         const url = e.target.value;
         setImage(url);
@@ -37,7 +37,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                 setTitle(oneCourse.title || "");
                 setDescription(oneCourse.description || "");
                 setImage(oneCourse.image || "");
-                /* setPrice(oneCourse.price || 0); */
+                setPrice(oneCourse.price || 0);
                 if (oneCourse.professor) {
                     setProfessor(oneCourse.professor._id || "");
                 }
@@ -71,11 +71,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
             return;
         }
         
-        const requestBody = { 
-            title, 
-            description, 
-            image
-        };
+        const requestBody = {title, description, image, price };
         
         // Si es admin y ha seleccionado un profesor, incluirlo en la solicitud
         if (userLogin?.role === "admin" && professor) {
@@ -125,6 +121,13 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                             </label>
                             <textarea name="description" value={description} onChange={handleDescription} className="textarea textarea-bordered h-24" required/>
                         </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Price (€)</span>
+                            </label>
+                            <input  type="number" name="price" value={price} onChange={handlePrice} className="input input-bordered" min="0" step="0.01"/>
+                        </div>
                         
                         <div className="form-control">
                             <label className="label">
@@ -137,20 +140,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                             {!isImageValid && <p className="text-error text-sm mt-1">Por favor, ingresa una URL de imagen válida.</p>}
                         </div>
 
-                        {/* <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Price (€)</span>
-                            </label>
-                            <input 
-                                type="number" 
-                                name="price" 
-                                value={price} 
-                                onChange={handlePrice}
-                                className="input input-bordered" 
-                                min="0"
-                                step="0.01"
-                            />
-                        </div> */}
+                        
 
                         {image && isImageValid && (
                             <div className="form-control mt-4">
