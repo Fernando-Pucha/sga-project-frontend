@@ -91,7 +91,7 @@ export default function CoursePage() {
                             />
                         ))
                     ) : (
-                        <h1 className="col-span-3 text-3xl font-bold text-center p-60">No courses to show</h1>
+                        <h1 className="col-span-3 text-3xl font-bold text-center p-44">No courses to show</h1>
                     )
                 )}
             </div>

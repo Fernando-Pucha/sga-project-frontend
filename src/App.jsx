@@ -19,7 +19,7 @@ import UserUpdate from "./components/UserUpdate/UserUpdate.jsx";
 import CourseEnrollPage from "./pages/CourseEnrollPage/CourseEnrollPage.jsx";
 import CourseDetailsPage from "./pages/CourseDetails/CourseDetailsPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import StudentEnrollPage from "./pages/StudentEnrollPage/StudentEnrollPage.jsx";
+import StudentEnrollPage from "./pages/StudentEnrollPage/StudentEnrollPage";
 
 function App() {
   return (

@@ -8,6 +8,7 @@ export default function CoursePage() {
     const [courses, setCourses] = useState([]);
     const [userLogin, setUserLogin] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    
 
     const getInitialCourses = () => {
         setIsLoading(true);

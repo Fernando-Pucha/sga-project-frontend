@@ -19,29 +19,25 @@ class EnrollService {
     });
   }
 
+  //Muestra todos los cursos donde un estudiante esta inscrito
   enrollView = () =>{
     return this.api.get(`/api/enrollments/student/courses`);
   }
   
+  // Inscribir al estudiante en un curso
   enrollCreate = (courseId) =>{
     return this.api.post(`/api/enrollments/${courseId}/enroll`);
   }
 
- 
-
- /*  
-
-  myLesson = (courseId,lessonId) =>{
-    return this.api.get(`/api/lesson/${courseId}/lessons/${lessonId}`);
+  // Verificar si el estudiante está inscrito en un curso específico
+  checkEnrollment(courseId) {
+    return this.api.get(`/api/enrollments/${courseId}/check`);
   }
 
-  lessonUpdate = (requestBody, courseId, lessonId ) =>{
-    return this.api.put(`/api/lesson/${courseId}/lessons/${lessonId}`, requestBody);
+   // Desinscribir al estudiante de un curso
+   enrollDelete(courseId) {
+    return this.api.delete(`/api/enrollments/${courseId}/disenroll`);
   }
-
- lessonDelete = (courseId, lessonId) =>{
-    return this.api.delete(`/api/lesson/${courseId}/lessons/${lessonId}`);
-  } */
 
 }
 
