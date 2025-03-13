@@ -10,15 +10,21 @@ export default function AddCourse() {
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [userLogin, setUserLogin] = useState([]);
     const [professors, setProfessors] = useState([]);
+    const [isImageValid, setIsImageValid] = useState(true); 
 
     const handleTitle = (e) => setTitle(e.target.value);
     const handleDescription = (e) => setDescription(e.target.value);
     const handleProfessor = (e) => setProfessor(e.target.value);
-    const handleImage = (e) => setImage(e.target.value);
+    const handleImage = (e) => {
+        const url = e.target.value;
+        setImage(url);
+        const imagePattern = /\.(jpg|jpeg|png|gif|bmp)$/i;
+        setIsImageValid(imagePattern.test(url));
+    };
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
-        const requestBody = { title, description, professorId: professor, image};
+        const requestBody = { title, description, professorId: professor, image };
         courseService
             .courseCreate(requestBody)
             .then(() => {
@@ -46,7 +52,7 @@ export default function AddCourse() {
     }, []);
 
     return (
-        <div className="hero bg-base-200 " style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
+        <div className="hero bg-base-200" style={{ backgroundImage: 'url("https://observatorio.tec.mx/wp-content/uploads/2022/05/librosdetexto.jpeg")' }}>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
                     <form onSubmit={handleSignupSubmit} className="card-body">
@@ -67,8 +73,19 @@ export default function AddCourse() {
                             <label className="label">
                                 <span className="label-text">Image</span>
                             </label>
-                            <input type="text" name="image" value={image} onChange={handleImage} className="input input-bordered" required />
+                            <input 
+                                type="text" name="image" value={image} onChange={handleImage} 
+                                className={`input input-bordered ${isImageValid ? '' : 'input-error'}`} 
+                                placeholder="https://ejemplo.com/imagen.jpg" 
+                            />
+                            {!isImageValid && <p className="text-error">Please enter a valid image link.</p>}
                         </div>
+
+                        {image && isImageValid && (
+                            <div className="form-control mt-4">
+                                <img src={image} alt="Vista previa de la imagen" style={{ maxWidth: '100%' }} />
+                            </div>
+                        )}
 
                         {userLogin?.role === "admin" &&
                             <div className="form-control">
@@ -85,7 +102,7 @@ export default function AddCourse() {
                         }
 
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Add Course</button>
+                            <button className="btn btn-primary" type="submit">Add Course</button>
                         </div>
                     </form>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
