@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# SGA Project - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción Técnica
+Sistema de Gestión Académica (SGA) construido con React. Este repositorio contiene el frontend de la aplicación.
 
-## Available Scripts
+## Tecnologías Utilizadas
+- React 18
+- React Router DOM v6
+- Tailwind CSS
+- Axios
+- JWT para autenticación
 
-In the project directory, you can run:
+## Requisitos Previos
+- Node.js >= 14.0.0
+- npm >= 6.14.0
+- Git
 
-### `npm start`
+## Configuración del Entorno
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/your-username/sga-project-frontend.git
+cd sga-project-frontend
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Instalar dependencias**
+```bash
+npm install
+```
 
-### `npm test`
+3. **Configurar variables de entorno**
+Crear archivo `.env` en la raíz del proyecto:
+```env
+REACT_APP_API_URL=http://localhost:5005/api
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Estructura del Proyecto
+```
+src/
+├── components/        # Componentes reutilizables
+├── context/          # Contextos de React (auth, etc.)
+├── pages/            # Páginas/Vistas principales
+├── services/         # Servicios API
+├── App.jsx           # Componente principal
+└── index.jsx         # Punto de entrada
+```
 
-### `npm run build`
+## Scripts Disponibles
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Desarrollo**
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Construcción**
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Tests**
+```bash
+npm test
+```
 
-### `npm run eject`
+## Rutas Principales
+- `/` - Página de inicio
+- `/login` - Inicio de sesión
+- `/signup` - Registro
+- `/profile` - Perfil de usuario
+- `/courses` - Gestión de cursos
+- `/users` - Gestión de usuarios (admin)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Autenticación
+- Implementada usando JWT
+- Token almacenado en localStorage
+- Rutas protegidas usando componentes `IsPrivate` e `IsAnon`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Convenciones de Código
+- Usar ESLint y Prettier para formateo
+- Nombres de componentes en PascalCase
+- Nombres de funciones en camelCase
+- Props destructuring en componentes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contribución
+1. Crear branch: `feature/nombre-caracteristica`
+2. Commit cambios: `git commit -m 'feat: add nueva característica'`
+3. Push al branch: `git push origin feature/nombre-caracteristica`
+4. Crear Pull Request
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Gestión de Estado
+- Context API para estado global
+- Estados locales con useState
+- useEffect para efectos secundarios
 
-## Learn More
+## Mejores Prácticas
+- Componentización modular
+- Reutilización de código
+- Manejo de errores consistente
+- Lazy loading para optimización
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Despliegue
+```bash
+npm run build
+```
+Los archivos de producción se generarán en la carpeta `build/`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing
+- Jest para pruebas unitarias
+- React Testing Library para pruebas de componentes
+- Coverage mínimo requerido: 70%
 
-### Code Splitting
+## Contacto
+- Desarrollador Principal: Fernando Pucha
+- Email: fernandopuchap@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Licencia
+MIT
