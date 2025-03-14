@@ -34,7 +34,7 @@ export default function CourseList({ course, userLogin, courseId, clickDeleteCou
                     {course.price > 0 ? (
                         <div className="text-2xl font-bold text-accent">€ {course.price}</div>
                     ) : (
-                        course.price === 0 && <h2 className="font-bold text-lg text-primary">Free</h2>
+                        <h2 className="font-bold text-lg text-primary">Free</h2>
                     )}
 
                     {(userLogin?.role === "admin" || (userLogin?.role === "profesor" && userLogin?._id === course?.professor)) &&
