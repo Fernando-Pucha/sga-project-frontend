@@ -49,10 +49,10 @@ export default function CourseList({ course, userLogin, courseId, clickDeleteCou
                                 <dialog id={modalId} className="modal">
                                     <div className="modal-box w-11/12 max-w-5xl">
                                         <h3 className="font-bold text-lg">Edit course: {course.title}</h3>
-                                        <EditCourse 
-                                            courseId={courseId} 
-                                            closeModal={handleCloseModal} 
-                                            onUpdateSuccess={refreshCourses} 
+                                        <EditCourse
+                                            courseId={courseId}
+                                            closeModal={handleCloseModal}
+                                            onUpdateSuccess={refreshCourses}
                                         />
                                         <button className="btn mt-4" onClick={handleCloseModal}>Close</button>
                                     </div>

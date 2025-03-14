@@ -138,9 +138,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                                 placeholder="https://ejemplo.com/imagen.jpg"
                             />
                             {!isImageValid && <p className="text-error text-sm mt-1">Por favor, ingresa una URL de imagen válida.</p>}
-                        </div>
-
-                        
+                        </div>                      
 
                         {image && isImageValid && (
                             <div className="form-control mt-4">
@@ -156,13 +154,7 @@ export default function EditCourse({ courseId, closeModal, onUpdateSuccess }) {
                                 <label className="label">
                                     <span className="label-text">Professor</span>
                                 </label>
-                                <select 
-                                    name="professor" 
-                                    value={professor} 
-                                    onChange={handleProfessor} 
-                                    className="select select-bordered w-full" 
-                                    required
-                                >
+                                <select name="professor" value={professor} onChange={handleProfessor} className="select select-bordered w-full" required>
                                     <option value="" disabled>Choose a Professor</option>
                                     {professors.map((prof) => (
                                         <option key={prof._id} value={prof._id}>{prof.name}</option>

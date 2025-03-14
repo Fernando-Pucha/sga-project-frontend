@@ -21,19 +21,15 @@ export default function UsersList({ usuario }) {
                     </div>
                     <div>
                         <div className="font-bold">{usuario.name}</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="text-sm opacity-50">Spain</div>
                     </div>
                 </div>
             </td>
-            <td>
-                {usuario.email}
-                <br />
-                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-            </td>
+            <td> {usuario.email} </td>
             <td>{usuario.role}</td>
             <th>
                 <Link to={`${FrontApiURL}/users/userdetail/${usuario._id}`} style={{ textDecoration: 'none' }}>
-                    <button className="btn btn-ghost btn-xs">details</button>
+                    <button className="btn btn-ghost btn-xs text-green-600">details</button>
                 </Link>
             </th>
         </tr>

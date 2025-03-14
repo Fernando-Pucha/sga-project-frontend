@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-/* import { Link } from 'react-router-dom'; */
 import "font-awesome/css/font-awesome.min.css";
 import { useParams } from "react-router";
 import courseService from '../../services/course.service';
@@ -80,7 +79,6 @@ export default function CourseDetailsPage() {
 
     }, [courseId])
 
-
     const closeModal = () => {
         getInitialCourse();
         document.getElementById('my_modal_4').close();
@@ -118,8 +116,6 @@ export default function CourseDetailsPage() {
             })
             .catch((err) => console.log(err));
     };
-
-
 
     return (
         <div className="container mx-auto py-10 px-5 mt-6">
@@ -229,17 +225,6 @@ export default function CourseDetailsPage() {
                                 ) : (
                                     <p>No lesson to show</p>
                                 )}
-                                <div>
-                                    <h2 className="card-title">Lessons</h2>
-                                    <ul className="text-left mt-6">
-                                        <li>Module 1: Introduction to Web Development</li>
-                                        <li>Module 2: HTML & CSS Fundamentals</li>
-                                        <li>Module 3: JavaScript Basics</li>
-                                        <li>Module 4: Introduction to React</li>
-                                        <li>Module 5: Building Full-Stack Applications with Node.js</li>
-                                        <li>Module 6: Final Project</li>
-                                    </ul>
-                                </div>
                             </>
                         )}
 

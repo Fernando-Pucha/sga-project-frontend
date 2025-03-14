@@ -68,15 +68,11 @@ export default function UserUpdate() {
                 <option value="estudiante">Student</option>
               </select>
               <button type="submit" className="btn btn-primary w-32 mt-7">Update</button>
-            </div>
-            
-          </div>
-         
-        </div>
-     
+            </div>            
+          </div>         
+        </div>     
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </>
-
   );
 }

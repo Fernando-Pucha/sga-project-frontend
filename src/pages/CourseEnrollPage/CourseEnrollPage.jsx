@@ -25,7 +25,7 @@ export default function CoursePage() {
 
     useEffect(() => {
         getInitialCourses();
-        
+
         authService
             .userProfile()
             .then(res => setUserLogin(res.data))
@@ -54,8 +54,8 @@ export default function CoursePage() {
         <>
             {((userLogin?.role === "admin") || (userLogin?.role === "profesor")) &&
                 <div className="flex mt-20">
-                    <button 
-                        className="btn btn-outline btn-primary mt-2 ml-auto mr-14" 
+                    <button
+                        className="btn btn-outline btn-primary mt-2 ml-auto mr-14"
                         onClick={() => document.getElementById('my_modal_add_course').showModal()}
                     >
                         + Course
@@ -71,7 +71,7 @@ export default function CoursePage() {
             }
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-4">
-               
+
                 {isLoading ? (
                     <div className="col-span-3 text-center py-10">
                         <div className="loading loading-spinner loading-lg"></div>
@@ -80,11 +80,11 @@ export default function CoursePage() {
                 ) : (
                     courses.length > 0 ? (
                         courses.map((course) => (
-                            <CourseList 
-                                key={course._id} 
-                                course={course} 
-                                userLogin={userLogin} 
-                                courseId={course._id} 
+                            <CourseList
+                                key={course._id}
+                                course={course}
+                                userLogin={userLogin}
+                                courseId={course._id}
                                 clickDeleteCourse={clickDeleteCourse}
                                 refreshCourses={getInitialCourses}
                             />

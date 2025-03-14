@@ -25,10 +25,9 @@ export default function CoursePage() {
     }
 
     useEffect(() => {
-        // Cargar cursos
+
         getInitialCourses();
         
-        // Cargar perfil de usuario
         authService
             .userProfile()
             .then(res => setUserLogin(res.data))
@@ -74,63 +73,6 @@ export default function CoursePage() {
             }
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mx-auto mt-20">
-                {/* Ejemplos de cursos estáticos */}
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
-                    <figure>
-                        <img
-                            src="https://kinsta.com/es/wp-content/uploads/sites/8/2023/04/react-must-be-in-scope-when-using-jsx.jpg"
-                            alt="React" />
-                    </figure>
-                    <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">React</h2>
-                        <div className="space-y-0">
-                            <p className="text-left">Professor: Carlos</p>
-                            <p className="text-left">Enrolled students: 18</p>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <h2 className="text-blue-500 font-bold"><i className="fa fa-book"></i> 10 Lesson</h2>
-                            <h2 className="font-bold text-lg text-accent">Free</h2>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
-                    <figure>
-                        <img
-                            src="https://www.dongee.com/tutoriales/content/images/2023/12/image-112.png"
-                            alt="CSS" />
-                    </figure>
-                    <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">CSS Básico</h2>
-                        <div className="space-y-0">
-                            <p className="text-left">Professor: Javier Barrionuevo</p>
-                            <p className="text-left">Enrolled students: 10</p>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <h2 className="text-blue-500 font-bold"><i className="fa fa-book"></i> 5 Lesson</h2>
-                            <h2 className="font-bold text-lg text-accent">Free</h2>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
-                    <figure>
-                        <img
-                            src="https://admin.12grids.com/uploads/blogs/original_cover_images/top-11-web-development-technologies-you-must-know-in-2024-12grids-compressed.jpg"
-                            alt="Web Development" />
-                    </figure>
-                    <div className="card-body flex flex-col justify-center">
-                        <h2 className="card-title">Web Development</h2>
-                        <div className="space-y-0">
-                            <p className="text-left">Professor: Javier Barrionuevo</p>
-                            <p className="text-left">Enrolled students: 5</p>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <h2 className="text-blue-500 font-bold"><i className="fa fa-book"></i> 5 Lesson</h2>
-                            <h2 className="font-bold text-lg text-accent">Free</h2>
-                        </div>
-                    </div>
-                </div>
 
                 {isLoading ? (
                     <div className="col-span-3 text-center py-10">
