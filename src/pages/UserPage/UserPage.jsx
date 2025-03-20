@@ -6,6 +6,7 @@ import UsersList from "../../components/UserList/UserList";
 export default function UserPage() {
   const [user, setUser] = useState([]);
   const [userLogin, setUserLogin] = useState([]);
+  const [roleFilter, setRoleFilter] = useState("all");
 
   const getInitialUsers = () => {
     authService
@@ -32,6 +33,19 @@ export default function UserPage() {
     <>
       {userLogin?.role === "admin" &&
         <div className="flex mt-20">
+          <div className="mr-4">
+            <div> Filter by role </div>
+            <select
+              className="select select-bordered"
+              value={roleFilter}
+              onChange={(e) => setRoleFilter(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="admin">Admin</option>
+              <option value="profesor">Professor</option>
+              <option value="estudiante">Student</option>
+            </select>
+          </div>
           <button className="btn btn-outline btn-primary mt-2 ml-auto mr-4" onClick={() => document.getElementById('my_modal_4').showModal()}>+ User</button>
           <dialog id="my_modal_4" className="modal">
             <div className="modal-box w-11/12 max-w-5xl">
@@ -59,10 +73,12 @@ export default function UserPage() {
               <th></th>
             </tr>
           </thead>
-          
+
           <tbody>
             {user.length > 0 ? (
-              user.map((usuario) => (
+              user
+              .filter(usuario => roleFilter === "all" || usuario.role === roleFilter)
+              .map((usuario) => (
                 <UsersList key={usuario._id} usuario={usuario} />
               ))
             ) : (

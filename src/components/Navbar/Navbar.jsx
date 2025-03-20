@@ -64,8 +64,8 @@ function Navbar() {
             <div className="w-10 rounded-full">
 
               {isLoggedIn ? (
-                <img alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/profile/demo/2@94.webp" />
+                <img alt="Imagen usuario Navbar"
+                  src={userlog.imageUrl} />
 
               ) : <img
                 alt="Tailwind CSS Navbar component"

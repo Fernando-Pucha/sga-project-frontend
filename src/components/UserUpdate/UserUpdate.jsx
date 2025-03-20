@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router";
 import { useParams } from 'react-router-dom';
+import uploadImage from "../../services/file-upload.service.js"
 
 export default function UserUpdate() {
 
@@ -12,11 +13,30 @@ export default function UserUpdate() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handleName = (e) => setName(e.target.value);
   const handleRole = (e) => setRole(e.target.value);
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    try {
+      const response = await uploadImage(uploadData);
+      console.log("Image uploaded successfully:", response);
+      setImageUrl(response.fileUrl);
+    } catch (err) {
+      console.error("Error while uploading the file:", err);
+    }
+  };
 
   useEffect(() => {
     authService
@@ -26,13 +46,18 @@ export default function UserUpdate() {
         setEmail(oneUser.email);
         setName(oneUser.name);
         setRole(oneUser.role);
+        setImageUrl(oneUser.imageUrl)
       })
       .catch(err => console.log(err.message));
   }, [userId]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { email, name, role };
+    if (!imageUrl) {
+      alert("Espera a que la imagen se suba antes de enviar el formulario.");
+      return;
+    }
+    const requestBody = { email, name, role, imageUrl };
     authService
       .userUpdate(userId, requestBody)
       .then(() => { navigate(-1) })
@@ -47,10 +72,14 @@ export default function UserUpdate() {
       <form className="formAddProduct" onSubmit={handleFormSubmit}>
         <div className="hero bg-base-200 min-h-[91vh]">
           <div className="hero-content flex-col lg:flex-row gap-44">
-            <img
-              src="https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?semt=ais_hybrid"
-              alt=""
-              className="max-w-sm rounded-lg shadow-2xl" />
+            <div>
+              <img
+                src={imageUrl}
+                alt=""
+                className="max-w-sm rounded-lg shadow-2xl" />
+              <input type="file" name="imageUrl" onChange={handleFileUpload} className="input input-bordered" />
+            </div>
+
 
             <div className="text-left">
               <h1 className="text-5xl mb-4">Edit Profile</h1>
@@ -59,18 +88,22 @@ export default function UserUpdate() {
               <input type="text" name="name" value={name} onChange={handleName} className="input input-bordered" required />
 
               <h2 className="text-2xl font-bold mb-2">Email</h2>
-              <input type="email" name="email" value={email} onChange={handleEmail} className="input input-bordered" required />
+              <input type="email" name="email" value={email} onChange={handleEmail} className="input input-bordered" required dreadOnly />
 
               <h2 className="text-2xl font-bold mb-2">Role</h2>
               <select name="role" value={role} onChange={handleRole} className="select select-bordered w-full max-w-xs" required >
                 <option value="" disabled>Role</option>
+                <option value="admin">Admin</option>
                 <option value="profesor">Teacher</option>
                 <option value="estudiante">Student</option>
               </select>
-              <button type="submit" className="btn btn-primary w-32 mt-7">Update</button>
-            </div>            
-          </div>         
-        </div>     
+              <div className="flex gap-4 items-center justify-center mt-7">
+                <button type="submit" className="btn btn-primary w-32">Update</button>
+                <button className="btn btn-neutral" onClick={() => navigate(-1)} >Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </>

@@ -36,7 +36,7 @@ export default function UserDetails() {
         <div className="hero bg-base-200 min-h-[90vh] mt-14">
             <div className="hero-content flex-col lg:flex-row gap-44">
                 <img
-                    src="https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?semt=ais_hybrid"
+                    src={user.imageUrl}
                     alt=""
                     className="max-w-sm rounded-lg shadow-2xl" />
 
