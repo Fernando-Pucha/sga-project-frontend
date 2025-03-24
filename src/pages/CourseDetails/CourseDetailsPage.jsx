@@ -8,6 +8,7 @@ import authService from "../../services/auth.service";
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import enrollService from '../../services/enroll.service';
 import EditLesson from '../../components/EditLesson/EditLesson';
+import Summary from "../../components/Summary/Summary";
 
 export default function CourseDetailsPage() {
 
@@ -315,6 +316,8 @@ export default function CourseDetailsPage() {
                     </div>
                 </div>
             </div>
+            
+            <Summary/>
 
             {/* About Section */}
             <div className="mt-16">

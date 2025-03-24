@@ -95,7 +95,7 @@ export default function EditProfile() {
               </select>
               <div className="flex gap-4 items-center justify-center mt-7">
                 <button type="submit" className="btn btn-primary w-32">Update</button>
-                <button className="btn btn-neutral" onClick={() => navigate(-1)} >Back</button>
+                <button className="btn btn-neutral" onClick={() => navigate("/profile")} >Back</button>
               </div>
 
             </div>

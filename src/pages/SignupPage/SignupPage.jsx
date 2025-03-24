@@ -89,7 +89,7 @@ function SignupPage() {
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Sing up</button>
+              <button className="btn btn-primary">Sign Up</button>
             </div>
           </form>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
