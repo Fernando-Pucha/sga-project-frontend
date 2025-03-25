@@ -9,6 +9,7 @@ import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import enrollService from '../../services/enroll.service';
 import EditLesson from '../../components/EditLesson/EditLesson';
 import Summary from "../../components/Summary/Summary";
+import ShortContent from '../../components/ShortContent/ShortContent';
 
 export default function CourseDetailsPage() {
 
@@ -316,8 +317,15 @@ export default function CourseDetailsPage() {
                     </div>
                 </div>
             </div>
-            
-            <Summary/>
+
+            {(userLogin.role === "admin" || userLogin.role === "estudiante") && (
+                <Summary />
+            )}
+
+            {(userLogin.role === "admin" || (userLogin.role === "profesor" && userLogin._id.toString() === course?.professor?._id.toString())) && (
+                <ShortContent />
+            )}
+
 
             {/* About Section */}
             <div className="mt-16">

@@ -18,6 +18,14 @@ class GeminiService {
   getSummary = (text) => {
     return this.api.post("api/ai/summarize", { text });
   };
+
+  getShortContent = (topic) => {
+    return this.api.post("api/ai/short-content", { topic });
+  };
+
+  getChatbot = (question) => {
+    return this.api.post("api/ai/chat", { question });
+  };
 }
 
 const geminiService = new GeminiService();

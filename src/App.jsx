@@ -20,11 +20,13 @@ import CourseEnrollPage from "./pages/CourseEnrollPage/CourseEnrollPage.jsx";
 import CourseDetailsPage from "./pages/CourseDetails/CourseDetailsPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import StudentEnrollPage from "./pages/StudentEnrollPage/StudentEnrollPage";
+import ChatbotWidget from "./components/ChatbotWidget/ChatbotWidget";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <ChatbotWidget />
       <Routes>
         <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
         <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
