@@ -64,7 +64,7 @@ export default function ShortContent() {
           transition={{ duration: 0.3 }}
         >
           <h3 className="text-lg font-semibold">Content:</h3>
-          <p className="mt-2 text-gray-700">{content}</p>
+          <p className="mt-2 text-gray-700 " style={{ whiteSpace: "pre-line", textAlign: "left" }}>{content.replace(/\\n/g, '\n').replace(/\n\n+/g, '\n\n')}</p>
         </motion.div>
       )}
 

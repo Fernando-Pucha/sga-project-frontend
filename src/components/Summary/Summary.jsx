@@ -63,7 +63,7 @@ export default function Summary() {
           transition={{ duration: 0.3 }}
         >
           <h3 className="text-lg font-semibold">Summary:</h3>
-          <p className="mt-2 text-gray-700">{summary}</p>
+          <p className="mt-2 text-gray-700" style={{ whiteSpace: "pre-line", textAlign: "left" }}>{summary.replace(/\\n/g, '\n').replace(/\n\n+/g, '\n\n')}</p>
         </motion.div>
       )}
 

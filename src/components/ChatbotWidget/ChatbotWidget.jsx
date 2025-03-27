@@ -32,7 +32,7 @@ export default function ChatbotWidget() {
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       const errorMessage = {
-        text: "Lo siento, hubo un error. Por favor, intenta de nuevo.",
+        text: "Lo siento, hubo un error. Por favor, intenta de nuevo, recuerda iniciar sesión es muy importante",
         sender: "bot",
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -67,7 +67,9 @@ export default function ChatbotWidget() {
         <div className="chat-messages">
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.sender}`}>
-              <div className="message-content">{message.text}</div>
+              <div className="message-content" style={{ whiteSpace: "pre-line", textAlign: "left" }}>
+                {message.text.replace(/\\n/g, '\n').replace(/\n\n+/g, '\n\n')}
+              </div>
             </div>
           ))}
           {isLoading && (
